@@ -1,0 +1,13 @@
+// Mixins
+
+// Example - @include gradY(transparent, 0%, rgba($black, .1), 100%);
+@mixin gradY($top, $topPos, $bottom, $bottomPos) {
+    background: $top;
+    background: linear-gradient(to bottom, $top $topPos, $bottom $bottomPos);
+}
+
+// Example - @include gradX(transparent, 0%, rgba($black, .1), 100%);
+@mixin gradX($left, $leftPos, $right, $rightPos) {
+    background: $left;
+    background: linear-gradient(to right, $left $leftPos, $right $rightPos);
+}

@@ -1,0 +1,49 @@
+// Variables
+//
+// Define variables that will later override bootstrap defaults
+
+$enable-print-styles: false;
+
+// Colors
+$primary: #333;
+$secondary: #999;
+
+$body-color: #555;
+$headings-color: $primary;
+$input-focus-border-color: $primary;
+
+$selection-color: #d9edf7;
+
+// Breakpoints
+$grid-breakpoints: (
+    xxs: 0,
+    xs: 568px,
+    sm: 667.5px,
+    md: 767.5px,
+    lg: 991.5px,
+    xl: 1199.5px,
+    xxl: 1439.5px
+);
+
+$container-max-widths: (
+    xxs: 567px,
+    xs: 568px,
+    sm: 667.5px,
+    md: 767.5px,
+    lg: 991.5px,
+    xl: 1199.5px,
+    xxl: 1404px
+);
+
+// Misc
+
+$spacer: 1rem;
+
+// Fonts
+$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-serif: Georgia, Times, Times New Roman, serif;
+$headings-font-family: $font-family-serif;
+
+// Figure
+$figure-margin: $spacer * 2.5;
+$matrix-block-margin: $figure-margin;

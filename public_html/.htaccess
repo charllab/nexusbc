@@ -1,0 +1,226 @@
+# Proper MIME type for all files
+
+# Javascript
+AddType application/javascript js jsonp
+AddType application/json json
+
+# Audio
+AddType audio/ogg oga ogg
+AddType audio/mp4 m4a f4a f4b
+
+# Video
+AddType video/ogg ogv
+AddType video/mp4 mp4 m4v f4v f4p
+AddType video/webm webm
+AddType video/x-flv flv
+
+# SVG
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+# Webfonts
+AddType application/vnd.ms-fontobject eot
+AddType application/x-font-ttf ttf ttc
+AddType font/opentype otf
+AddType application/x-font-woff woff
+
+# Assorted types
+AddType image/x-icon ico
+AddType image/webp webp
+AddType text/cache-manifest appcache manifest
+AddType text/x-component htc
+AddType application/xml rss atom xml rdf
+AddType application/x-chrome-extension crx
+AddType application/x-opera-extension oex
+AddType application/x-xpinstall xpi
+AddType application/octet-stream safariextz
+AddType application/x-web-app-manifest+json webapp
+AddType text/x-vcard vcf
+AddType application/x-shockwave-flash swf
+
+# Gzip compression
+<IfModule mod_deflate.c>
+
+  # Force deflate for mangled headers
+  <IfModule mod_setenvif.c>
+		<IfModule mod_headers.c>
+			SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+			RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+		</IfModule>
+  </IfModule>
+
+  # HTML, TXT, CSS, JavaScript, JSON, XML, HTC:
+  <IfModule filter_module>
+      FilterDeclare  COMPRESS
+      FilterProvider COMPRESS DEFLATE "%{CONTENT_TYPE} =~ m#^text/(html|css|plain|xml|x-component)#i"
+      FilterProvider COMPRESS DEFLATE "%{CONTENT_TYPE} =~ m#^application/(javascript|json|xml|xhtml+xml|rss+xml|atom+xml|vnd.ms-fontobject|x-font-ttf)#i"
+      FilterProvider COMPRESS DEFLATE "%{CONTENT_TYPE} =~ m#^image/(svg+xml|x-icon)#i"
+      FilterProvider COMPRESS DEFLATE "%{CONTENT_TYPE} = 'font/opentype'"
+      FilterChain    COMPRESS
+      FilterProtocol COMPRESS DEFLATE change=yes;byteranges=no
+  </IfModule>
+
+  <IfModule !mod_filter.c>
+    #Legacy versions of Apache
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+    AddOutputFilterByType DEFLATE application/xhtml+xml application/rss+xml application/atom+xml
+    AddOutputFilterByType DEFLATE image/x-icon image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+  </IfModule>
+
+</IfModule>
+
+# Expires headers (for better cache control)
+# These are pretty far-future expires headers.
+# They assume you control versioning with filename-based cache busting
+
+<IfModule mod_expires.c>
+	ExpiresActive on
+
+	#Perhaps better to whitelist expires rules? Perhaps.
+	ExpiresDefault                          "access plus 1 month"
+
+	#cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+	ExpiresByType text/cache-manifest       "access plus 0 seconds"
+
+	# Your document html
+	ExpiresByType text/html                 "access plus 0 seconds"
+
+	# Data
+	ExpiresByType text/xml                  "access plus 0 seconds"
+	ExpiresByType application/xml           "access plus 0 seconds"
+	ExpiresByType application/json          "access plus 0 seconds"
+
+	# Feed
+	ExpiresByType application/rss+xml       "access plus 1 hour"
+	ExpiresByType application/atom+xml      "access plus 1 hour"
+
+	# Favicon (cannot be renamed)
+	ExpiresByType image/x-icon              "access plus 1 week"
+
+	# Media: images, video, audio
+	ExpiresByType image/gif                 "access plus 1 month"
+	ExpiresByType image/png                 "access plus 1 month"
+	ExpiresByType image/jpeg                "access plus 1 month"
+	ExpiresByType video/ogg                 "access plus 1 month"
+	ExpiresByType audio/ogg                 "access plus 1 month"
+	ExpiresByType video/mp4                 "access plus 1 month"
+	ExpiresByType video/webm                "access plus 1 month"
+
+	# HTC files  (css3pie)
+	ExpiresByType text/x-component          "access plus 1 month"
+
+	# Webfonts
+	ExpiresByType application/x-font-ttf    "access plus 1 month"
+	ExpiresByType font/opentype             "access plus 1 month"
+	ExpiresByType application/x-font-woff   "access plus 1 month"
+	ExpiresByType image/svg+xml             "access plus 1 month"
+	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+
+	# CSS and JavaScript
+	ExpiresByType text/css                  "access plus 1 year"
+	ExpiresByType application/javascript    "access plus 1 year"
+
+</IfModule>
+
+# ETag removal
+<IfModule mod_headers.c>
+   Header unset ETag
+</IfModule>
+
+FileETag None
+
+# Start rewrite engine
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# UTF-8 encoding
+AddDefaultCharset utf-8
+
+# Force UTF-8 for a number of file formats
+AddCharset utf-8 .css .js .xml .json .rss .atom
+
+# Force UTF-8 for a number of file formats
+AddCharset utf-8 .css .js .xml .json .rss .atom
+
+# ------------------------------------------------------------
+# Relative 301 redirects
+# When necessary use rewrite rules like this so that they work in all environments
+# These rules must come before removal of index.php from the URL
+#
+# Make sure the following rules come before this one:
+# RewriteEngine on
+# RewriteBase /
+#
+# Test new rules as 302 redirects
+# ------------------------------------------------------------
+
+# Examples
+
+# RedirectMatch (?i)/path-to-old-location/?$ https://mysite.com/path-to-new-location
+# RewriteRule ^old-url/?$ /new-url [R=301,L]
+# Redirect 301 /path-to-old-location https://mysite.com/path-to-new-location
+
+# Security
+
+# "-Indexes" will have Apache block users from browsing folders without a default document
+# Usually you should leave this activated, because you shouldn't allow everybody to surf through
+# every folder on your server (which includes rather private places like CMS system folders).
+<IfModule mod_autoindex.c>
+	Options -Indexes
+</IfModule>
+
+# Block access to "hidden" directories or files whose names begin with a period. This
+# includes directories used by version control systems such as Subversion or Git.
+<IfModule mod_rewrite.c>
+	RewriteCond %{SCRIPT_FILENAME} -d [OR]
+	RewriteCond %{SCRIPT_FILENAME} -f
+	RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# Block access to backup and source files
+# These files may be left by some text/html editors and
+# pose a great security danger, when anyone can access them
+<FilesMatch "(\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)|~)$">
+	Order allow,deny
+	Deny from all
+	Satisfy All
+</FilesMatch>
+
+# Increase cookie security
+<IfModule php5_module>
+	php_value session.cookie_httponly true
+</IfModule>
+
+# Hide .git and _svn folders so they cannot be accessed
+# But you shouldn't upload them in the first place
+<IfModule mod_rewrite.c>
+	RewriteRule ^(.*/)*_svn/ / [F,L]
+	RewriteRule ^(.*/)*\.git/ / [F,L]
+</IfModule>
+
+# Secure config file
+<files wp-config.php>
+    order allow,deny
+    deny from all
+</files>
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

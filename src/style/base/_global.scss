@@ -1,0 +1,82 @@
+// Base
+//
+// Our custom base reset that helps create Craft & Bootstrap synergy
+
+// Reset
+html {
+    height: 100%;
+}
+
+body {
+	-webkit-overflow-scrolling: touch;
+    height: 100%;
+    background: $white;
+    overflow-x: hidden;
+}
+
+body.css-loaded {
+    .fa {
+        visibility: visible;
+    }
+}
+
+* {
+	-webkit-tap-highlight-color: rgba($black, 0);
+	-webkit-overflow-scrolling: touch;
+}
+
+img {
+	image-rendering: optimize-contrast;
+}
+
+.img-full {
+    width: 100%;
+}
+
+::selection,
+::-moz-selection {
+	text-shadow: none;
+	background: $selection-color;
+}
+
+iframe {
+	max-width: 100%;
+}
+
+textarea {
+	resize: vertical;
+}
+
+hr {
+	margin: ($spacer * 2) 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+mark {
+	padding: .2rem .4rem;
+	border-radius: 4px;
+}
+
+.noselect {
+	user-select: none;
+}
+
+// Contextual
+
+.bg-white {
+	background-color: $white;
+}
+
+// Containers
+
+.container-fluid,
+.container {
+    padding: 0 2.25rem;
+}
+
+@include media-breakpoint-down(lg) {
+    .container {
+        padding: 0 2.25rem;
+        max-width: 100%;
+    }
+}

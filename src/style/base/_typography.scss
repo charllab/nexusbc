@@ -1,0 +1,63 @@
+// Responsive font sizing
+html {
+    font-size: 16px;
+}
+
+// Sets font size to 16px on form elements to prevent input zoom on mobile devices
+@include media-breakpoint-down(sm) {
+    .form-control {
+        font-size: $font-size-base * 1.075;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    html {
+        font-size: 18px;
+    }
+}
+
+// Global
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-family: $font-family-base;
+    -webkit-overflow-scrolling: touch;
+    line-height: 1.4;
+}
+
+.small, small {
+    font-size: 90%;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+}
+
+.spaced-list {
+    padding: 0 0 0 22px;
+}
+
+.spaced-list li {
+    margin-bottom: .5rem;
+}
+
+.lead strong {
+    font-weight: 600;
+}
+
+.text-md {
+    font-size: 90%;
+}
+
+.list-unstyled li {
+    padding-bottom: .25rem;
+
+    &:last-of-type {
+        padding-bottom: 0;
+    }
+}
+
+.list-unstyled {
+    margin-bottom: 1rem;
+}
