@@ -1,7 +1,24 @@
 jQuery(function () {
 
-    // Auto target _blank external links
-    targetBlankExternalLinks();
+    // Hero Carousel
+    jQuery('#hero-slide').owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: true,
+        dots: true,
+        nav: false,
+        autoplaySpeed: 1500,
+        autoplayTimeout: 9000,
+        autoplay: true,
+        items: 1,
+        navText: ["<i class='hero--arrows left-arrow--svg'></i>", "<i class='hero--arrows right-arrow--svg'></i>"],
+        responsive: {
+            992: {
+                dots: false,
+                nav: true,
+            }
+        }
+    });
 
     // Remove WP Block element iframe classes
     if (jQuery('.wp-block-embed-youtube').length) {

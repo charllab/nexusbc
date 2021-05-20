@@ -1,6 +1,9 @@
 .hero-nav-overlay {
-    padding: 2rem 0;
-    @include gradY(rgba($black, .4), 0%, transparent, 100%);
+
+    .navbar {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     .navbar-dark .navbar-toggler {
         background: $white;
@@ -14,31 +17,41 @@
     }
 
     .nav-logo img {
-        width: 50px;
+        width: 337px;
         height: auto;
     }
 
     .navbar-expand-lg > .container {
-        padding: 0 1.25rem;
+        padding: 0;
     }
 
     .navbar-nav .nav-link {
-        color: $white;
-        font-weight: bold;
+        color: $headings-blue;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
     .dropdown-toggle::after {
         margin-left: .45rem;
     }
 
+    @include media-breakpoint-up(xxl) {
+
+        .navbar {
+            padding: 0;
+        }
+
+    }
     @include media-breakpoint-up(lg) {
+
         .navbar-nav .menu-item.show > .nav-link {
             background: $white;
             color: $body-color;
         }
 
         .navbar-nav .nav-link {
-            padding: 0.4rem 1rem 0.4rem 1rem;
+            padding: 0;
+            padding-right: $spacer*1.75;
         }
 
         .dropdown-menu {
@@ -65,7 +78,7 @@
         padding: 0;
 
         .nav-logo img {
-            width: 35px;
+            width: 150px;
             height: auto;
         }
 

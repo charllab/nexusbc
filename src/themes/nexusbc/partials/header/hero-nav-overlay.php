@@ -1,9 +1,6 @@
 <header id="header" class="hero-nav-overlay bg-dark">
-    <a href="" target="_blank" class="btn btn-light rounded-0 mb-4 d-block d-lg-none">
-        Call To Action
-    </a>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft">
         <div class="container">
             <div class="nav-logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
@@ -12,31 +9,14 @@
                          class="img-fluid">
                     <span class="sr-only"><?php bloginfo('name'); ?></span>
                 </a>
-            </div>
+            </div><!-- nav-logo -->
 
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target=".mainnav-m" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target=".mainnav-m"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="d-lg-flex flex-lg-column d-none d-lg-block">
-                <div id="top-buttons" class="d-flex ml-auto mb-2 justify-content-end align-items-center">
-                    <a class="btn btn-link text-white my-auto mr-2" href="tel:<?php echo strip_tel(get_field('phone_number', 'options')); ?>"><?php the_field('phone_number', 'options'); ?></a>
-
-                    <div class="social-links mr-4">
-                        <?php while( have_rows('social_links', 'options') ): the_row(); ?>
-                            <a class="social-link btn btn-link px-1xx text-white" target="_blank" href="<?php the_sub_field('url'); ?>">
-                                <i class="<?php the_sub_field('icon_class'); ?> fa-lg">
-                                    <span class="sr-only"><?php the_sub_field('label'); ?></span>
-                                </i>
-                            </a>
-                        <?php endwhile; ?>
-                    </div>
-
-                    <a href="" target="_blank" class="btn my-auto btn-light">
-                        Call To Action
-                    </a>
-                </div>
-
+            <div class="desktop-nav d-lg-flex d-none d-lg-block">
                 <?php wp_nav_menu([
                     'theme_location' => 'primary',
                     'container_class' => 'collapse navbar-collapse',
@@ -46,8 +26,22 @@
                     'menu_id' => 'main-menu',
                     'walker' => new understrap_WP_Bootstrap_Navwalker(),
                 ]); ?>
-            </div>
-        </div>
+                <form id="searchForm" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <div class="input-group position-relative">
+                        <input type="search" class="form-control border-0 rounded-0" autocomplete="off" placeholder="Search…" name="s">
+                        <div class="input-group-btn position-absolute btn-search">
+                            <button class="btn btn-default border-0" type="submit">
+                                <span class="sr-only">Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="align-self-center">
+                    <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
+                </div>
+            </div><!-- desktop-nav -->
+
+        </div><!-- container-->
     </nav>
 
     <div class="mainnav-m collapse navbar-collapse">
@@ -61,31 +55,45 @@
             'walker' => new understrap_WP_Bootstrap_Navwalker(),
         ]); ?>
 
-        <div class="container">
-            <a class="btn btn-link text-white px-0" href="tel:<?php echo strip_tel(get_field('phone_number', 'options')); ?>"><?php the_field('phone_number', 'options'); ?></a>
+    </div><!-- mainnav-m -->
 
-            <div class="social-links">
-                <?php while( have_rows('social_links', 'options') ): the_row(); ?>
-                    <a class="social-link btn btn-link text-white px-0 mr-2" target="_blank" href="<?php the_sub_field('url'); ?>">
-                        <i class="<?php the_sub_field('icon_class'); ?> fa-2x">
-                            <span class="sr-only"><?php the_sub_field('label'); ?></span>
-                        </i>
-                    </a>
+    <?php if (is_front_page()) : ?>
+
+        <?php if (have_rows('hero_slide')): ?>
+            <div class="owl-carousel" id="hero-slide">
+
+                <?php while (have_rows('hero_slide')) : the_row(); ?>
+
+                    <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
+
+                    <div class="hero-slide"
+                         style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
+                        <div class="block__tint-overlay"></div>
+                        <div class="item">
+                            <div class="container hero-slide__container py-2 py-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <h1 class="text-white">
+                                            <?php the_sub_field('hero_slide_title'); ?>
+                                        </h1>
+                                        <p class="lead text-white mb-125 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
+                                        <?php if (get_sub_field('hero_slide_button_text')): ?>
+                                            <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
+                                               class="btn btn-primary" class="text-white mb-1">
+                                                <?php the_sub_field('hero_slide_button_text'); ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 <?php endwhile; ?>
-            </div>
-        </div>
-    </div>
 
-    <section class="section section--lg">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-md-10 col-lg-7 col-xl-6">
-                    <h2 class="h1 text-white">Maecenas sed diam eget</h2>
-                    <p class="lead text-muted">
-                        Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </div><!-- owl-carousel -->
+
+        <?php endif; ?>
+    <?php endif; ?>
+
 </header>

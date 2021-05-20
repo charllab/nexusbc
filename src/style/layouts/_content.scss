@@ -1,36 +1,14 @@
 /* Sections */
 
-.section {
-    position: relative;
-    width: 100%;
-    padding: 4rem 0;
-    color: inherit;
-    background-position: center bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
 
-    &.bg-pos--top-center {
-        background-position: top center;
-    }
+.bg-blue {
+    background-color: $headings-blue;
+}
 
-    &.section--sm {
-        padding: 3rem 0;
-    }
+.bg-soft {
+    background-color: $soft;
+}
 
-    &.section--lg {
-        padding: 6rem 0;
-    }
-
-    @include media-breakpoint-down(md) {
-        padding: 2.5rem 0;
-
-        &.section--sm {
-            padding: 2rem 0;
-        }
-
-        &.section--lg {
-            padding: 4rem 0;
-        }
-    }
+.max-width-792 {
+    max-width: $spacer*33;
 }
