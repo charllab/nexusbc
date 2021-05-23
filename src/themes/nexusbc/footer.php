@@ -14,6 +14,9 @@
     </section>
 </footer>
 
+<!--allow custom donation embedding for post-->
+<?php if( get_field('post_script')) {the_field('post_script');} ?>
+
 <?php wp_footer(); ?>
 
 </body>

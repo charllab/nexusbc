@@ -1,5 +1,10 @@
 jQuery(function () {
 
+
+    if (screen.width < 1700) {
+        $('.dropdown > a').removeAttr('data-toggle');;
+    }
+
     // Hero Carousel
     jQuery('#hero-slide').owlCarousel({
         loop: true,
@@ -18,6 +23,13 @@ jQuery(function () {
                 nav: true,
             }
         }
+    });
+
+    // sponsor slider
+    jQuery('#supporter-slider').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true
     });
 
     // Remove WP Block element iframe classes
@@ -67,9 +79,9 @@ var targetBlankExternalLinks = function () {
         + ')|(localhost:\\d{4})|(\\/.*))(\\/.*)?$', '');
 
     jQuery('a').filter(function () {
-            var href = jQuery(this).attr('href');
-            return !internalLinkRegex.test(href);
-        })
+        var href = jQuery(this).attr('href');
+        return !internalLinkRegex.test(href);
+    })
         .each(function () {
             jQuery(this).attr('target', '_blank');
         });

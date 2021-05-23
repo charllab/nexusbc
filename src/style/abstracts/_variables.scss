@@ -8,9 +8,8 @@ $primary: #00AEEF; //cyan
 $secondary: #F15D22; //orange
 $body-color: #414141; //grey
 $soft: #F3F4F7; //offwhite
-$dark: #1D1D1D;
-$headings-blue: #3050A0; //dark-blue
-$headings-color: $headings-blue;
+$dark: #3050A0; //navy
+$headings-color: $dark;
 $input-focus-border-color: $primary;
 $selection-color: $secondary;
 $navbar-light-active-color: $secondary;
@@ -19,7 +18,7 @@ $navbar-light-active-color: $secondary;
 // Breakpoints
 $grid-breakpoints: (
     xxs: 0,
-    xs: 568px,
+    xs: 450px,
     sm: 667.5px,
     md: 767.5px,
     lg: 991.5px,
@@ -30,7 +29,7 @@ $grid-breakpoints: (
 
 $container-max-widths: (
     xxs: 567px,
-    xs: 568px,
+    xs: 450px,
     sm: 667.5px,
     md: 767.5px,
     lg: 991.5px,

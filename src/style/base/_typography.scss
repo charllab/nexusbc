@@ -72,6 +72,12 @@ body {
     line-height: 1.2;
 }
 
+a {
+    font-weight: 700;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
 p {
     margin-bottom: $spacer*1.2;
 }

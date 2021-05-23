@@ -1,6 +1,9 @@
 <header id="header" class="hero-nav-overlay bg-dark">
 
-    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft">
+
+
+    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft py-1 py-lg-0">
+
         <div class="container">
             <div class="nav-logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
@@ -11,7 +14,24 @@
                 </a>
             </div><!-- nav-logo -->
 
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target=".mainnav-m"
+            <div class="ml-auto d-xs-flex justify-content-center justify-content-sm-end d-xxxl-none order-1 order-sm-2">
+                <form id="searchForm" class="d-none d-sm-flex" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <div class="input-group position-relative">
+                        <input type="search" class="form-control border-0 rounded-0" autocomplete="off"
+                               placeholder="Search…" name="s">
+                        <div class="input-group-btn position-absolute btn-search">
+                            <button class="btn btn-default border-0" type="submit">
+                                <span class="sr-only">Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="align-self-center d-none d-xs-flex">
+                    <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
+                </div>
+            </div><!-- d-none d-xxxl-block -->
+
+            <button class="navbar-toggler ml-150 order-1 order-sm-2" type="button" data-toggle="collapse" data-target=".mainnav-m"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
@@ -26,28 +46,48 @@
                     'menu_id' => 'main-menu',
                     'walker' => new understrap_WP_Bootstrap_Navwalker(),
                 ]); ?>
-                <form id="searchForm" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                    <div class="input-group position-relative">
-                        <input type="search" class="form-control border-0 rounded-0" autocomplete="off" placeholder="Search…" name="s">
-                        <div class="input-group-btn position-absolute btn-search">
-                            <button class="btn btn-default border-0" type="submit">
-                                <span class="sr-only">Submit</span>
-                            </button>
+
+                <div class="d-none d-xxxl-flex">
+                    <form id="searchForm" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                        <div class="input-group position-relative">
+                            <input type="search" class="form-control border-0 rounded-0" autocomplete="off"
+                                   placeholder="Search…" name="s">
+                            <div class="input-group-btn position-absolute btn-search">
+                                <button class="btn btn-default border-0" type="submit">
+                                    <span class="sr-only">Submit</span>
+                                </button>
+                            </div>
                         </div>
+                    </form>
+                    <div class="align-self-center">
+                        <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
                     </div>
-                </form>
-                <div class="align-self-center">
-                    <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
-                </div>
+                </div><!-- d-none d-xxxl-block -->
             </div><!-- desktop-nav -->
 
         </div><!-- container-->
+
+
+    <div class="d-sm-none w-100 mt-1">
+        <form id="searchForm" class="w-100" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+            <div class="input-group position-relative w-100">
+                <input type="search" class="form-control border-0 rounded-0" autocomplete="off"
+                       placeholder="Search…" name="s">
+                <div class="input-group-btn position-absolute btn-search">
+                    <button class="btn btn-default border-0" type="submit">
+                        <span class="sr-only">Submit</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div><!-- d-sm-none -->
+
     </nav>
 
-    <div class="mainnav-m collapse navbar-collapse">
+    <div class="mainnav-m collapse navbar-collapse bg-primary d-xxxl-none">
         <?php wp_nav_menu([
             'theme_location' => 'primary',
-            'container_class' => 'container',
+            'container_class' => 'container px-25 py-1',
             'container_id' => 'mainnav',
             'menu_class' => 'navbar-nav ml-auto',
             'fallback_cb' => '',

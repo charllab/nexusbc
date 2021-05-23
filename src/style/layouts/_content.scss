@@ -1,14 +1,34 @@
 /* Sections */
 
 
-.bg-blue {
-    background-color: $headings-blue;
-}
-
 .bg-soft {
     background-color: $soft;
 }
 
 .max-width-792 {
     max-width: $spacer*33;
+}
+
+// object fits for images
+
+.object-fit_fill {
+    object-fit: fill
+}
+
+.object-fit_contain {
+    object-fit: contain
+}
+
+.object-fit_cover {
+    object-fit: cover
+}
+
+.object-fit_none {
+    object-fit: none
+}
+
+// front-page blogs
+
+.blog_thumbnail {
+
 }

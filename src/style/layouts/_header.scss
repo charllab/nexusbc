@@ -1,5 +1,7 @@
 .hero-nav-overlay {
 
+
+
     .navbar {
         padding-top: 0;
         padding-bottom: 0;
@@ -26,7 +28,7 @@
     }
 
     .navbar-nav .nav-link {
-        color: $headings-blue;
+        color: $dark;
         font-weight: 700;
         text-transform: uppercase;
     }
@@ -35,14 +37,9 @@
         margin-left: .45rem;
     }
 
-    @include media-breakpoint-up(xxl) {
 
-        .navbar {
-            padding: 0;
-        }
+    @include media-breakpoint-up(xxxl) {
 
-    }
-    @include media-breakpoint-up(lg) {
 
         .navbar-nav .menu-item.show > .nav-link {
             background: $white;
@@ -74,11 +71,25 @@
         }
     }
 
+    @include media-breakpoint-down(xxl) {
+        .dropdown-menu, .dropdown-menu.show {
+            display: block !important;
+            position: relative !important;
+            transform: none !important;
+            top: 0;
+            left: 0;
+            background-color: rgba(white, .2) !important;
+            border: none;
+            border-radius: 0;
+            padding-left: $spacer/2 !important;
+            margin-left: 0 !important;
+        }
+    }
+
     @include media-breakpoint-down(md) {
-        padding: 0;
 
         .nav-logo img {
-            width: 150px;
+            width: 200px;
             height: auto;
         }
 
@@ -90,4 +101,12 @@
             padding: 0 0 0 1.5rem;
         }
     }
+
+    @include media-breakpoint-down(sm) {
+        .nav-logo img {
+            width: 150px;
+            height: auto;
+        }
+    }
+
 }
