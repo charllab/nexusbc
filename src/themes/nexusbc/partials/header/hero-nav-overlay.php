@@ -2,7 +2,7 @@
 
 
 
-    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft py-1 py-lg-0">
+    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft py-1 py-lg-0 z-index-500 w-100">
 
         <div class="container">
             <div class="nav-logo">
@@ -44,7 +44,8 @@
                     'menu_class' => 'navbar-nav ml-auto',
                     'fallback_cb' => '',
                     'menu_id' => 'main-menu',
-                    'walker' => new understrap_WP_Bootstrap_Navwalker(),
+                    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+                    'walker'          => new WP_Bootstrap_Navwalker(),
                 ]); ?>
 
                 <div class="d-none d-xxxl-flex">
@@ -87,36 +88,38 @@
     <div class="mainnav-m collapse navbar-collapse bg-primary d-xxxl-none">
         <?php wp_nav_menu([
             'theme_location' => 'primary',
-            'container_class' => 'container px-25 py-1',
+            'container_class' => 'container py-1',
             'container_id' => 'mainnav',
             'menu_class' => 'navbar-nav ml-auto',
             'fallback_cb' => '',
             'menu_id' => 'main-menu',
-            'walker' => new understrap_WP_Bootstrap_Navwalker(),
+            'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+            'walker'          => new WP_Bootstrap_Navwalker(),
         ]); ?>
+
 
     </div><!-- mainnav-m -->
 
     <?php if (is_front_page()) : ?>
 
         <?php if (have_rows('hero_slide')): ?>
-            <div class="owl-carousel" id="hero-slide">
+            <div class="owl-carousel z-index-1 position-relative" id="hero-slide">
 
                 <?php while (have_rows('hero_slide')) : the_row(); ?>
 
                     <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
 
-                    <div class="hero-slide"
+                    <div class="hero-slide position-relative"
                          style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
-                        <div class="block__tint-overlay"></div>
+                        <div class="block__tint-overlay position-absolute h-100"></div>
                         <div class="item">
-                            <div class="container hero-slide__container py-2 py-lg-8">
+                            <div class="container position-relative hero-slide__container py-2 py-lg-8">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6">
                                         <h1 class="text-white">
                                             <?php the_sub_field('hero_slide_title'); ?>
                                         </h1>
-                                        <p class="lead text-white mb-125 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
+                                        <p class="lead text-white mb-2 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
                                         <?php if (get_sub_field('hero_slide_button_text')): ?>
                                             <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
                                                class="btn btn-primary" class="text-white mb-1">

@@ -2,7 +2,7 @@
 /* Require Includes */
 include_once get_template_directory().'/includes/gutenburg.php';
 include_once get_template_directory().'/includes/helper-functions.php';
-include_once get_template_directory().'/includes/bootstrap-wp-navwalker.php';
+//include_once get_template_directory().'/includes/bootstrap-wp-navwalker.php';
 //include_once get_template_directory().'/includes/acf-custom-widget.php';
 
 /* Hooks */
@@ -26,6 +26,14 @@ if (!function_exists('enqueue_scripts')) {
         wp_enqueue_script('footer_js', get_stylesheet_directory_uri().'/js/footer-bundle.js', null, FOOTERBUNDLE_VERSION, true);
     }
 }
+
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+    require_once get_template_directory() . '/includes/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
 
 if (!function_exists('custom_after_setup_theme')) {
 

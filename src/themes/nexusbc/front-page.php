@@ -54,7 +54,7 @@
                         <h2 class="h1 text-white">
                             Help Us Transform Lives
                         </h2>
-                        <p class="lead text-white mb-0">
+                        <p class="lead text-white mb-2 mb-lg-0">
                             It is donors like you that enable our most treasured community members
                             to be cared for and supported so they can live their very best lives.
                         </p>
