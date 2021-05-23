@@ -1,7 +1,5 @@
 .hero-nav-overlay {
 
-
-
     .navbar {
         padding-top: 0;
         padding-bottom: 0;
@@ -37,9 +35,13 @@
         margin-left: .45rem;
     }
 
+    @include media-breakpoint-up(xl) {
+        .navbar {
+            padding: 0;
+        }
+    }
 
     @include media-breakpoint-up(xxxl) {
-
 
         .navbar-nav .menu-item.show > .nav-link {
             background: $white;

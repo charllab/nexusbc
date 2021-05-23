@@ -51,6 +51,16 @@
     object-fit: none
 }
 
+main > .container {
+    padding-top: $spacer*1.5;
+
+    @include media-breakpoint-up(xxl) {
+        padding-top: $spacer*2;
+    }
+}
+
+
+
 // front-page blogs
 
 .blog_thumbnail {

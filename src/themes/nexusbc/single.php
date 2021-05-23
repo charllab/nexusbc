@@ -1,9 +1,8 @@
 <?php get_header(); ?>
 
-    singles.php
+    <!--singles.php-->
 
     <main>
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -12,7 +11,6 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
-
     </main>
 
 <?php get_footer(); ?>

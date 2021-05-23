@@ -11,6 +11,7 @@ html {
 body {
 	-webkit-overflow-scrolling: touch;
     height: 100%;
+    box-sizing: border-box;
     background: $white;
     min-width: 320px;
 }

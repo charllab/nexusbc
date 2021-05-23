@@ -3,6 +3,42 @@
     <!--front-page.php-->
     <main>
 
+        <?php if (have_rows('hero_slide')): ?>
+            <div class="owl-carousel z-index-1 position-relative" id="hero-slide">
+
+                <?php while (have_rows('hero_slide')) : the_row(); ?>
+
+                    <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
+
+                    <div class="hero-slide position-relative"
+                         style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
+                        <div class="block__tint-overlay position-absolute h-100"></div>
+                        <div class="item">
+                            <div class="container position-relative hero-slide__container py-2 py-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <h1 class="text-white">
+                                            <?php the_sub_field('hero_slide_title'); ?>
+                                        </h1>
+                                        <p class="lead text-white mb-2 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
+                                        <?php if (get_sub_field('hero_slide_button_text')): ?>
+                                            <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
+                                               class="btn btn-primary" class="text-white mb-1">
+                                                <?php the_sub_field('hero_slide_button_text'); ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endwhile; ?>
+
+            </div><!-- owl-carousel -->
+
+        <?php endif; ?>
+
         <section class="py-2">
             <div class="container">
                 <div class="row">
@@ -70,22 +106,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="h1">
+                        <h2 class="h1 mb-2 mb-md-1">
                             OUR DIRECTORIES
                         </h2>
                     </div><!-- col -->
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 text-center text-lg-left">
+                    <div class="col-sm-6 text-center text-xl-left">
                         <a href="#"
-                           class="mr-xxxl-2 d-inline-block px-lg-5 px-xxxl-7 py-5 fake-btn--yellow text-dark lead font-weight-bold">
-                            SENIORS HOUSING GUIDE
+                           class="d-flex justify-content-center align-items-center mr-xxxl-2 mb-50 py-2 px-1 p-md-2 py-lg-5 px-xl-5 px-xxxl-7 fake-btn fake-btn--yellow text-dark lead font-weight-bold">
+                            <span>SENIORS HOUSING GUIDE</span>
                         </a>
                     </div><!-- col -->
-                    <div class="col-lg-6 text-center text-lg-right">
+                    <div class="col-sm-6 text-center text-xl-right">
                         <a href="#"
-                           class="ml-xxxl-2 d-inline-block px-lg-5 px-xxxl-7 py-5 fake-btn--orange text-white lead font-weight-bold">
-                            HOME SUPPORT DIRECTORY
+                           class="d-flex justify-content-center align-items-center ml-xxxl-2 mb-50 py-2 px-1 p-md-2 py-lg-5 px-xl-5 px-xxxl-7 fake-btn fake-btn--orange text-white lead font-weight-bold">
+                            <span>HOME SUPPORT DIRECTORY</span>
                         </a>
                     </div><!-- col -->
                 </div><!-- row -->

@@ -1,8 +1,6 @@
-<header id="header" class="hero-nav-overlay bg-dark">
+<header id="header" class="hero-nav-overlay fixed-top bg-soft">
 
-
-
-    <nav class="navbar navbar-expand-xxxl navbar-light bg-soft py-1 py-lg-0 z-index-500 w-100">
+    <nav class="navbar navbar-expand-xxxl navbar-light py-1 py-lg-0 z-index-500 w-100">
 
         <div class="container">
             <div class="nav-logo">
@@ -99,44 +97,5 @@
 
 
     </div><!-- mainnav-m -->
-
-    <?php if (is_front_page()) : ?>
-
-        <?php if (have_rows('hero_slide')): ?>
-            <div class="owl-carousel z-index-1 position-relative" id="hero-slide">
-
-                <?php while (have_rows('hero_slide')) : the_row(); ?>
-
-                    <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
-
-                    <div class="hero-slide position-relative"
-                         style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
-                        <div class="block__tint-overlay position-absolute h-100"></div>
-                        <div class="item">
-                            <div class="container position-relative hero-slide__container py-2 py-lg-8">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6">
-                                        <h1 class="text-white">
-                                            <?php the_sub_field('hero_slide_title'); ?>
-                                        </h1>
-                                        <p class="lead text-white mb-2 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
-                                        <?php if (get_sub_field('hero_slide_button_text')): ?>
-                                            <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
-                                               class="btn btn-primary" class="text-white mb-1">
-                                                <?php the_sub_field('hero_slide_button_text'); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <?php endwhile; ?>
-
-            </div><!-- owl-carousel -->
-
-        <?php endif; ?>
-    <?php endif; ?>
 
 </header>
