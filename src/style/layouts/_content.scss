@@ -60,9 +60,61 @@ main > .container {
 }
 
 
-
 // front-page blogs
 
 .blog_thumbnail {
 
+}
+
+// supporter slider
+#supporters-slider {
+
+    padding-left: $spacer*2;
+    padding-right: $spacer*2;
+    position: relative;
+
+    .support--arrows {
+        width: $spacer*2;
+        height: $spacer*2;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .svg-support-left-arrow {
+        margin-left: -$spacer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3CclipPath id='clip-path'%3E%3Crect id='Rectangle_2362' data-name='Rectangle 2362' width='48' height='48' transform='translate(72 2784)' fill='%23fff' stroke='%23707070' stroke-width='1'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg id='Mask_Group_12' data-name='Mask Group 12' transform='translate(-72 -2784)' clip-path='url(%23clip-path)'%3E%3Cg id='priority-low' transform='translate(108.679 2785) rotate(90)'%3E%3Cpath id='Path_2' data-name='Path 2' d='M42.467,0a2.963,2.963,0,0,0-2.1.867L22.715,18.526,5.059.868A2.964,2.964,0,1,0,.868,5.059L20.62,24.811a2.963,2.963,0,0,0,4.191,0L44.562,5.059A2.963,2.963,0,0,0,42.467,0Z' transform='translate(0 0)' fill='%2300aeef'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .svg-support-right-arrow {
+        margin-right: -$spacer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3CclipPath id='clip-path'%3E%3Crect id='Rectangle_2361' data-name='Rectangle 2361' width='48' height='48' transform='translate(1704 3048)' fill='%23fff' stroke='%23707070' stroke-width='1'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg id='Mask_Group_11' data-name='Mask Group 11' transform='translate(-1704 -3048)' clip-path='url(%23clip-path)'%3E%3Cg id='priority-low' transform='translate(1715 3094.432) rotate(-90)'%3E%3Cpath id='Path_2' data-name='Path 2' d='M42.467,0a2.963,2.963,0,0,0-2.1.867L22.715,18.526,5.059.868A2.964,2.964,0,1,0,.868,5.059L20.62,24.811a2.963,2.963,0,0,0,4.191,0L44.562,5.059A2.963,2.963,0,0,0,42.467,0Z' transform='translate(0 0)' fill='%2300aeef'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+
+    .owl-stage-outer {
+        position: relative;
+        z-index: 5;
+    }
+
+    .owl-nav {
+        z-index: 1;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        background-color: transparent;
+        justify-content: space-between;
+    }
+    .item {
+        img {
+            object-fit: contain;
+            width: 408px;
+            height: 192px;
+            margin: 0 !important;
+        }
+    }
 }

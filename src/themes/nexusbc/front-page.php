@@ -3,8 +3,9 @@
     <!--front-page.php-->
     <main>
 
+
         <?php if (have_rows('hero_slide')): ?>
-            <div class="owl-carousel z-index-1 position-relative" id="hero-slide">
+            <div class="owl-carousel z-index-1 position-relative" id="hero-slider">
 
                 <?php while (have_rows('hero_slide')) : the_row(); ?>
 
@@ -60,24 +61,27 @@
                     $wp_query = new WP_Query();
                     $wp_query->query($args);
 
-                    while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+                    // The 2nd Loop
+                    while ($wp_query->have_posts()) {
+                        $wp_query->the_post(); ?>
 
                         <div class="col-md-4">
                             <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
+                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
                             </a>
                             <a class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
-                                    <?php
-                                    $thetitle = $post->post_title; /* or you can use get_the_title() */
-                                    $getlength = strlen($thetitle);
-                                    $thelength = 32;
-                                    echo substr($thetitle, 0, $thelength);
-                                    if ($getlength > $thelength) echo "&hellip;";
-                                    ?>
+                                <?php
+                                $thetitle = $post->post_title; /* or you can use get_the_title() */
+                                $getlength = strlen($thetitle);
+                                $thelength = 32;
+                                echo substr($thetitle, 0, $thelength);
+                                if ($getlength > $thelength) echo "&hellip;";
+                                ?>
                             </a>
                         </div><!-- col -->
 
-                        <?php wp_reset_postdata(); endwhile; ?>
+                    <?php }
+                    wp_reset_query(); ?>
 
                 </div><!-- row -->
             </div><!-- container -->
@@ -146,21 +150,35 @@
             </div><!-- container -->
         </section>
 
-        <section class="py-1">
-            <div class="container">
-                <?php if (have_rows('supporter_slider')): ?>
-                    <div class="owl-carousel" id="supporter-slider">
+        <?php if (have_rows('supporters')) : ?>
 
-                        <?php while (have_rows('supporter_slider')) : the_row(); ?>
+            <section class="py-1 bg-soft">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col text-center">
+                            <h2><?php the_field('supporters_section_title'); ?></h2>
+                        </div><!-- col -->
+                    </div><!-- row -->
 
-                            <?php $supportsliderimageurl = get_sub_field('supporter_logo'); ?>
+                    <div class="owl-carousel" id="supporters-slider">
+
+                        <?php while (have_rows('supporters')) : the_row(); ?>
+
+                            <?php $supporterLogo = get_sub_field('supporter_logo'); ?>
 
                             <div class="item">
 
-                                <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
-                                   class="btn btn-primary" class="text-white mb-1">
-                                    <span class="sr-only">Client name</span>
+                                <?php if (get_sub_field('supporter_optional_website_link')): ?>
+                                <a href="<?php the_sub_field('supporter_optional_website_link'); ?>"
+                                   class="text-white mb-1" title="Visit supporter">
+                                <?php endif; ?>
+                                    <img src="<?php echo $supporterLogo['url']; ?>"
+                                         alt="<?php echo $supporterLogo['alt']; ?>"
+                                         class="img-fluid d-block"
+                                    >
+                                <?php if (get_sub_field('supporter_optional_website_link')): ?>
                                 </a>
+                                <?php endif; ?>
 
                             </div><!-- item-->
 
@@ -168,9 +186,9 @@
 
                     </div><!-- owl-carousel -->
 
-                <?php endif; ?>
-            </div><!-- container -->
-        </section>
+                </div><!-- container -->
+            </section>
+        <?php endif; ?>
 
     </main>
 

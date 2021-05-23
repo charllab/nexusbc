@@ -14,7 +14,7 @@ jQuery(function () {
     });
 
     // Hero Carousel
-    jQuery('#hero-slide').owlCarousel({
+    jQuery('#hero-slider').owlCarousel({
         loop: true,
         margin: 0,
         responsiveClass: true,
@@ -34,10 +34,23 @@ jQuery(function () {
     });
 
     // sponsor slider
-    jQuery('#supporter-slider').owlCarousel({
+    jQuery('#supporters-slider').owlCarousel({
         loop: true,
         margin: 0,
-        nav: true
+        nav: true,
+        autoplaySpeed: 1500,
+        autoplayTimeout: 9000,
+        autoplay: true,
+        items: 1,
+        navText: ["<i class='support--arrows svg-support-left-arrow'></i>", "<i class='support--arrows svg-support-right-arrow'></i>"],
+        responsive: {
+            450: {
+                items: 2,
+            },
+            992: {
+                items: 5,
+            }
+        }
     });
 
     // Remove WP Block element iframe classes
