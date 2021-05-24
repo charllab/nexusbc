@@ -3,7 +3,6 @@
     <!--front-page.php-->
     <main>
 
-
         <?php if (have_rows('hero_slide')): ?>
             <div class="owl-carousel z-index-1 position-relative" id="hero-slider">
 
@@ -11,13 +10,13 @@
 
                     <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
 
-                    <div class="hero-slide position-relative"
+                    <div class="hero-slide--fullheight position-relative bg-danger"
                          style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
                         <div class="block__tint-overlay position-absolute h-100"></div>
                         <div class="item">
-                            <div class="container position-relative hero-slide__container py-2 py-lg-8">
+                            <div class="container position-relative hero-slide__container py-2 py-lg-6 py-xxxl-8">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 pb-2 pb-lg-0">
                                         <h1 class="text-white">
                                             <?php the_sub_field('hero_slide_title'); ?>
                                         </h1>
@@ -92,15 +91,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <h2 class="h1 text-white">
-                            Help Us Transform Lives
+                            <?php the_field('homepage_donate_cta_heading'); ?>
                         </h2>
                         <p class="lead text-white mb-2 mb-lg-0">
-                            It is donors like you that enable our most treasured community members
-                            to be cared for and supported so they can live their very best lives.
+                            <?php the_field('homepage_donate_cta_blurb'); ?>
                         </p>
                     </div><!-- col -->
                     <div class="col text-lg-center">
-                        <a href="#" class="btn btn-lg btn-primary">Donate</a>
+                        <a href="<?php the_field('homepage_donate_cta_button_link'); ?>" class="btn btn-lg btn-primary"><?php the_field('homepage_donate_cta_button_title'); ?></a>
                     </div><!-- col -->
                 </div><!-- row -->
             </div><!-- container -->
@@ -111,40 +109,52 @@
                 <div class="row">
                     <div class="col-12">
                         <h2 class="h1 mb-2 mb-md-1">
-                            OUR DIRECTORIES
+
+                            <?php the_field('homepage_directories_section_title'); ?>
                         </h2>
                     </div><!-- col -->
                 </div>
                 <div class="row">
                     <div class="col-sm-6 text-center text-xl-left">
-                        <a href="#"
-                           class="d-flex justify-content-center align-items-center mr-xxxl-2 mb-50 py-2 px-1 p-md-2 py-lg-5 px-xl-5 px-xxxl-7 fake-btn fake-btn--yellow text-dark lead font-weight-bold">
+                        <div class="pr-lg-2 pr-xxxl-0">
+                        <a href="<?php the_field('senior_housing_guide_link'); ?>"
+                           class="d-flex justify-content-center align-items-center
+                           fake-btn fake-btn--yellow text-dark lead font-weight-bold
+                           mr-xxxl-2 mb-50
+                           py-2 py-lg-5
+                           p-md-2
+                           px-1 px-xl-5 px-xxxl-7">
                             <span>SENIORS HOUSING GUIDE</span>
                         </a>
+                        </div><!-- pr -->
                     </div><!-- col -->
                     <div class="col-sm-6 text-center text-xl-right">
-                        <a href="#"
-                           class="d-flex justify-content-center align-items-center ml-xxxl-2 mb-50 py-2 px-1 p-md-2 py-lg-5 px-xl-5 px-xxxl-7 fake-btn fake-btn--orange text-white lead font-weight-bold">
+                        <div class="pl-lg-2 pr-xxxl-0">
+                        <a href="<?php the_field('home_support_directory'); ?>"
+                           class="d-flex justify-content-center align-items-center
+                           fake-btn fake-btn--orange text-white lead font-weight-bold
+                           ml-xxxl-2 mb-50
+                           py-2 py-lg-5
+                           p-md-2
+                           px-1 px-xl-5 px-xxxl-6 ">
                             <span>HOME SUPPORT DIRECTORY</span>
                         </a>
+                        </div><!-- pl -->
                     </div><!-- col -->
                 </div><!-- row -->
             </div><!-- container -->
         </section>
 
-        <section class="py-4">
+        <section class="pt-4 pb-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        Main Sponsor block
+                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
+                        <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
                     </div><!-- col -->
                     <div class="col-lg-5">
-                        <h2 class="h1">MAIN SPONSOR</h2>
-                        <p>NexusBC Community Resource Centre is a registered, charitable organization
-                            that began in 1988 by providing employment-related services to individuals
-                            in the North Okanagan. Since that time, we have grown, evolved and
-                            expanded our services to deliver our mandate of connecting people to
-                            resources in order to promote a healthy and sustainable community. </p>
+                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>
+                        <p><?php the_field('homepage_main_sponsor_section_blurb'); ?></p>
                     </div><!-- col -->
                 </div><!-- row -->
             </div><!-- container -->
@@ -155,7 +165,7 @@
             <section class="py-1 bg-soft">
                 <div class="container">
                     <div class="row text-center">
-                        <div class="col text-center">
+                        <div class="col text-center pt-50">
                             <h2><?php the_field('supporters_section_title'); ?></h2>
                         </div><!-- col -->
                     </div><!-- row -->

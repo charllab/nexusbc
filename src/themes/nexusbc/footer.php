@@ -25,8 +25,10 @@
                     </div><!-- pr -->
                 </div><!-- col -->
                 <div class="col-md-6 col-lg-3">
+                    <div class="pr-md-3 pr-lg-150">
                     <h2 class="h3 text-white mb-125">HOURS OF OPERATION</h2>
                     <p><?php the_field('hours_of_operation', 'option'); ?></p>
+                    </div><!-- col -->
                 </div><!-- col -->
                 <div class="col-md-6 col-lg-3">
                     <div class="pr-md-3">

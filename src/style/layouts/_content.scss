@@ -33,6 +33,115 @@
     max-width: $spacer*33;
 }
 
+/* - - - - front-page - - - - */
+
+/* FrontPage Hero Slider */
+
+.hero-outer--fullheight {
+
+    @include media-breakpoint-up(lg) {
+        height: 100vh;
+        min-height: $spacer*36;
+    }
+}
+
+.hero-slide--fullheight {
+    min-height: $spacer*20;
+    height: 100%;
+}
+
+.hero-slide__container {
+    position: relative;
+    z-index: 99;
+}
+.hero-slide__container {
+    position: relative;
+    z-index: 99;
+}
+
+
+// hero owl-carousel
+#hero-slider {
+
+    .owl-nav {
+        position: absolute;
+        bottom: $spacer;
+        left: $spacer*2;
+        right: 0;
+        @extend .container;
+        padding: 0;
+        @include media-breakpoint-up( xxl) {
+            left: $spacer;
+        }
+    }
+
+    @include media-breakpoint-between(lg, xxl) {
+        .owl-prev {
+            left: .5rem;
+        }
+        .owl-next {
+            right: .5rem;
+        }
+    }
+
+    .owl-dots {
+        width: 100%;
+        text-align: center;
+
+        position: absolute;
+        bottom: $spacer;
+
+        .owl-dot {
+            width: $spacer;
+            height: $spacer;
+
+            &.active {
+                span {
+                    background-color: $primary;
+                }
+            }
+            span {
+                background-color: white;
+                border: none;
+                margin: auto;
+                border-radius: 50%;
+                display: block;
+                width: $spacer/2;
+                height: $spacer/2;
+            }
+        }
+    }
+
+    .hero--arrows {
+        width: 26px;
+        height: 16px;
+        display: block;
+    }
+
+    .owl-next {
+        margin-left: $spacer/2;
+    }
+
+    .left-arrow--svg {
+        background-image: url("data:image/svg+xml,%3Csvg id='box-arrow-left' xmlns='http://www.w3.org/2000/svg' width='26.133' height='16.633' viewBox='0 0 26.133 16.633'%3E%3Cpath id='Path_6' data-name='Path 6' d='M25.125,160.261a1.188,1.188,0,0,0,0-1.682l-6.289-6.286,6.289-6.285a1.189,1.189,0,1,0-1.682-1.682l-7.127,7.127a1.188,1.188,0,0,0,0,1.682l7.127,7.127a1.188,1.188,0,0,0,1.682,0Z' transform='translate(-15.967 -143.977)' fill='%23fff' fill-rule='evenodd'/%3E%3Cpath id='Path_7' data-name='Path 7' d='M71.755,241.188A1.188,1.188,0,0,0,70.568,240H49.188a1.188,1.188,0,1,0,0,2.376h21.38A1.188,1.188,0,0,0,71.755,241.188Z' transform='translate(-45.622 -232.872)' fill='%23fff' fill-rule='evenodd'/%3E%3C/svg%3E%0A");
+    }
+
+    .right-arrow--svg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26.133' height='16.633' viewBox='0 0 26.133 16.633'%3E%3Cg id='box-arrow-left' transform='translate(26.133 16.633) rotate(180)'%3E%3Cpath id='Path_6' data-name='Path 6' d='M9.158,16.284a1.188,1.188,0,0,0,0-1.682L2.869,8.316,9.158,2.031A1.189,1.189,0,0,0,7.476.348L.349,7.475a1.188,1.188,0,0,0,0,1.682l7.127,7.127a1.188,1.188,0,0,0,1.682,0Z' transform='translate(0)' fill='%23fff' fill-rule='evenodd'/%3E%3Cpath id='Path_7' data-name='Path 7' d='M23.755,1.188A1.188,1.188,0,0,0,22.568,0H1.188a1.188,1.188,0,1,0,0,2.376h21.38A1.188,1.188,0,0,0,23.755,1.188Z' transform='translate(2.378 7.128)' fill='%23fff' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E%0A");
+
+    }
+
+}
+
+/* - - - - owl fixes -- - - */
+
+.owl-stage {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+}
+
 // object fits for images
 
 .object-fit_fill {
@@ -59,11 +168,9 @@ main > .container {
     }
 }
 
-
 // front-page blogs
 
 .blog_thumbnail {
-
 }
 
 // supporter slider
@@ -109,6 +216,7 @@ main > .container {
         background-color: transparent;
         justify-content: space-between;
     }
+
     .item {
         img {
             object-fit: contain;
