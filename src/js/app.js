@@ -53,6 +53,18 @@ jQuery(function () {
         }
     });
 
+    // sponsor slider
+    jQuery('#quote_slider').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        autoplaySpeed: 1500,
+        autoplayTimeout: 9000,
+        autoplay: true,
+        items: 1,
+        dots: true,
+    });
+
     // Remove WP Block element iframe classes
     if (jQuery('.wp-block-embed-youtube').length) {
         jQuery('.wp-block-embed-youtube').removeClass().addClass('embed-responsive-item');
