@@ -4,35 +4,50 @@
 
     <main>
 
-        <div class="container py-2">
-            <div class="row">
-                <div class="col-12">
+        <?php if (have_rows('pingpongs')): ?>
+            <?php while (have_rows('pingpongs')) : the_row(); ?>
+            <section style="background-color: <?php the_sub_field('background_color'); ?> !important;">
+                <div class="container">
+                    <?php
+                    $image = get_sub_field('image');
+                    ?>
 
-                    pingpongs content will go here
+                    <div class="row justify-content-between align-items-center py-2">
+                        <div
+                            class="col-lg-6 <?php if (get_sub_field('position') == 'right'): ?>order-lg-1 <?php else : ?> <?php endif; ?>">
+                            <img src="<?php echo esc_url($image['url']); ?>"
+                                 alt="<?php echo esc_url($image['alt']); ?>"
+                                 class="img-fluid d-block ping-image mb-1 mb-lg-0">
+                        </div><!-- col -->
+                        <div
+                            class="col-lg-5 <?php if (get_sub_field('position') == 'right'): ?>order-lg-0 <?php else : ?> <?php endif; ?>">
+                            <h2 class="h2 semi-bold"><?php the_sub_field('title'); ?></h2>
+                            <?php the_sub_field('content'); ?>
+                            <?php if (get_sub_field('button_link')): ?>
+                                <a href="<?php the_sub_field('button_link'); ?>"
+                                   class="btn btn-primary mt-1"><?php the_sub_field('button_label'); ?></a>
+                            <?php endif; ?>
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- container -->
+            </section>
+            <?php endwhile; ?>
+        <?php endif; ?>
 
 
-                    <?php the_content(); ?>
-
-                </div><!-- col-->
-            </div><!-- row-->
-        </div><!-- container-->
-
-
-        <section class="py-2">
+        <section class="py-2 bg-soft-logo-circles">
             <div class="container">
+
                 <div class="row justify-content-center">
                     <div class="col col-lg-7 text-center pb-1 pb-lg-3">
                         <div class="px-lg-75">
-                            <h2 class="h1">OUR BOARD</h2>
-                            <p>
-                                NexusBC Community Resource Centre is governed by a community-based, volunteer Board of
-                                Directors. A big thank you goes to this amazing Board of Directors:
-                            </p>
+                            <h2 class="h1"><?php the_field('about_our_board_section_heading'); ?></h2>
+                            <p><?php the_field('about_our_board_section_text'); ?></p>
                         </div><!-- px-->
                     </div><!-- col-->
                 </div><!-- row-->
 
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center">
                     <?php
                     global $post;
                     $args = array(
@@ -147,11 +162,11 @@
                     <div class="col-lg-10 text-center">
                         <h2 class="h1 text-white"><?php the_field('our_members_section_heading'); ?></h2>
                         <?php if (get_field('our_members_section_text')): ?>
-                        <div class="px-lg-10">
-                            <p class="text-white">
-                                <?php the_field('our_members_section_text'); ?>
-                            </p>
-                        </div><!-- px -->
+                            <div class="px-lg-10">
+                                <p class="text-white">
+                                    <?php the_field('our_members_section_text'); ?>
+                                </p>
+                            </div><!-- px -->
                         <?php endif; ?>
                         <div class="p-3 bg-danger">
                             Form
@@ -174,7 +189,7 @@
             </div><!-- container -->
         </section>
 
-        <section class="pb-2 pb-lg-4">
+        <section class="pb-2">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
 
@@ -247,17 +262,13 @@
                     </div><!-- row -->
 
                     <div class="funder-logos">
-                        <img src="<?php the_field('about_our_funders_logos'); ?>" alt="NexusBC Funders logos" class="img-fluid d-block mx-auto">
+                        <img src="<?php the_field('about_our_funders_logos'); ?>" alt="NexusBC Funders logos"
+                             class="img-fluid d-block mx-auto">
                     </div><!-- funder-logos -->
 
                 </div><!-- container -->
 
             </div><!-- position-relative -->
-
-
-
-
-
 
 
         </section><!-- bg-soft -->
