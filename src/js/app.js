@@ -33,7 +33,7 @@ jQuery(function () {
         }
     });
 
-    // sponsor slider
+    // Sponsor slider
     jQuery('#supporters-slider').owlCarousel({
         loop: true,
         margin: 0,
@@ -53,7 +53,7 @@ jQuery(function () {
         }
     });
 
-    // sponsor slider
+    // Quote slider
     jQuery('#quote_slider').owlCarousel({
         loop: true,
         margin: 0,
@@ -63,6 +63,19 @@ jQuery(function () {
         autoplay: true,
         items: 1,
         dots: true,
+    });
+
+    // Team Testimonial slider
+    jQuery('#teamtestimonial_slider').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        autoplaySpeed: 1500,
+        autoplayTimeout: 9000,
+        autoplay: true,
+        items: 1,
+        dots: false,
+        navText: ["<i class='testimonial--arrows svg-testimonial-left-arrow'></i>", "<i class='testimonial--arrows svg-testimonial-right-arrow'></i>"],
     });
 
     // Remove WP Block element iframe classes
