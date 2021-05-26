@@ -27,10 +27,10 @@ $posts = get_posts(array(
 
                 <div class="col-lg-3 col-card">
                     <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <a href="#"><img class="card-img-top" src="..." alt="Card image cap"></a>
                         <div class="card-body">
-                            <h5 class="h3 text-center text-primary">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="h3 text-center text-primary"><a href="#">Custom Post Type the_title()</a></h5>
+                            <p class="card-text"><a href="#" class="text-body font-weight-normal">Custom Post Type the_excerpt()</a></p>
                         </div><!-- card-body -->
                     </div><!-- card -->
                 </div><!-- col -->
