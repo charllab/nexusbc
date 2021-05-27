@@ -2,11 +2,11 @@
 
     <!--singles.php-->
 
-    <main>
+    <main class="pb-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <?php the_title();?>
+                    <h1><?php the_title();?></h1>
                     <?php the_content();?>
                 </div><!-- col -->
             </div><!-- row -->

@@ -119,3 +119,18 @@ body.blog main {
     margin-top: $spacer*.5;
     margin-bottom: $spacer*1.5;
 }
+
+body .gform_wrapper .gform_footer input[type=submit] {
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 0;
+    line-height: 2;
+    box-shadow: none!important;
+    position: relative;
+    z-index: 1;
+    background-color: $primary;
+    color:white;
+
+    border: none;
+    padding: $spacer*.35 $spacer*1.5;
+}

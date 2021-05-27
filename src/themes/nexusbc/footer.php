@@ -74,7 +74,9 @@
                     <p>&copy; <?php echo Date('Y') . ' ' . get_bloginfo('name'); ?></p>
                 </div><!-- col -->
                 <div class="col-lg-4 text-center">
-                    <p class="text-white"><a href="<?php echo esc_url(home_url('/terms-of-use')); ?>" class="text-white">Terms of Use</a> |
+                    <p class="text-white">
+                        <a href="<?php echo esc_url(home_url('/covid-19')); ?>" class="text-white">COVID-19</a> |
+                        <a href="<?php echo esc_url(home_url('/terms-of-use')); ?>" class="text-white">Terms of Use</a> |
                         <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" class="text-white">Privacy Policy</a></p>
                 </div><!-- col -->
                 <div class="col-lg-4 text-center text-lg-right">

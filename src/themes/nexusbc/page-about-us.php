@@ -166,11 +166,14 @@
                                 <?php the_field('our_members_section_text'); ?>
                             </div><!-- px -->
                         <?php endif; ?>
-                        <div class="p-3 bg-danger">
-                            Form
-                        </div>
+
                     </div><!-- col -->
                 </div><!-- row -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <?php echo do_shortcode('[gravityform id="3" title="false" description="false"]'); ?>
+                    </div>
+                </div>
             </div><!-- container -->
         </section>
 
