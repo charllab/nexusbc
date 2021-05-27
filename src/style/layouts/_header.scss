@@ -44,8 +44,8 @@
     @include media-breakpoint-up(xxxl) {
 
         .navbar-nav .menu-item.show > .nav-link {
-            background: $white;
-            color: $body-color;
+            background: transparent;
+            color: $secondary;
         }
 
         .navbar-nav .nav-link {
@@ -54,22 +54,40 @@
         }
 
         .dropdown-menu {
-            box-shadow: none;
-            border-radius: 0;
-            border: none;
+            padding-top: $spacer/2;
+            padding-bottom: $spacer/2;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+            border-radius: 0 $spacer/1.5 $spacer/1.5;
+            border: 1px solid darken($soft,5%);
+            top: $spacer*1.75;
             right: auto;
             left: 0;
             margin: 0;
             background: $white;
-            width: 100%;
+
 
             & > .menu-item > .nav-link {
                 padding-left: $spacer;
                 padding-right: $spacer;
                 font-family: $font-family-sans-serif;
-                color: $gray-700;
                 font-size: 90%;
+
             }
+        }
+
+        .dropdown-item {
+            padding-top: $spacer/2.5;
+            padding-bottom: $spacer/2.5;
+            font-weight: bold;
+            font-size: 90%;
+            color: $dark;
+            text-transform: uppercase;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: transparent;
+            color: $secondary;
+
         }
     }
 

@@ -6,31 +6,31 @@
 
         <?php if (have_rows('pingpongs')): ?>
             <?php while (have_rows('pingpongs')) : the_row(); ?>
-            <section style="background-color: <?php the_sub_field('background_color'); ?> !important;">
-                <div class="container">
-                    <?php
-                    $image = get_sub_field('image');
-                    ?>
+                <section style="background-color: <?php the_sub_field('background_color'); ?> !important;">
+                    <div class="container">
+                        <?php
+                        $image = get_sub_field('image');
+                        ?>
 
-                    <div class="row justify-content-between align-items-center py-2">
-                        <div
-                            class="col-lg-6 <?php if (get_sub_field('position') == 'right'): ?>order-lg-1 <?php else : ?> <?php endif; ?>">
-                            <img src="<?php echo esc_url($image['url']); ?>"
-                                 alt="<?php echo esc_url($image['alt']); ?>"
-                                 class="img-fluid d-block ping-image mb-1 mb-lg-0">
-                        </div><!-- col -->
-                        <div
-                            class="col-lg-5 <?php if (get_sub_field('position') == 'right'): ?>order-lg-0 <?php else : ?> <?php endif; ?>">
-                            <h2 class="h2 semi-bold"><?php the_sub_field('title'); ?></h2>
-                            <?php the_sub_field('content'); ?>
-                            <?php if (get_sub_field('button_link')): ?>
-                                <a href="<?php the_sub_field('button_link'); ?>"
-                                   class="btn btn-primary mt-1"><?php the_sub_field('button_label'); ?></a>
-                            <?php endif; ?>
-                        </div><!-- col -->
-                    </div><!-- row -->
-                </div><!-- container -->
-            </section>
+                        <div class="row justify-content-between align-items-center py-2">
+                            <div
+                                class="col-lg-6 <?php if (get_sub_field('position') == 'right'): ?>order-lg-1 <?php else : ?> <?php endif; ?>">
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                     alt="<?php echo esc_url($image['alt']); ?>"
+                                     class="img-fluid d-block ping-image mb-1 mb-lg-0">
+                            </div><!-- col -->
+                            <div
+                                class="col-lg-5 <?php if (get_sub_field('position') == 'right'): ?>order-lg-0 <?php else : ?> <?php endif; ?>">
+                                <h2 class="h2 semi-bold"><?php the_sub_field('title'); ?></h2>
+                                <?php the_sub_field('content'); ?>
+                                <?php if (get_sub_field('button_link')): ?>
+                                    <a href="<?php the_sub_field('button_link'); ?>"
+                                       class="btn btn-primary mt-1"><?php the_sub_field('button_label'); ?></a>
+                                <?php endif; ?>
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- container -->
+                </section>
             <?php endwhile; ?>
         <?php endif; ?>
 
@@ -145,7 +145,7 @@
                         <div class="col-lg-3">
 
                             <?php if (get_field('get_involved_button_link')): ?>
-                                <a href="<?php the_field('get_involved_button_link'); ?>"
+                                <a href="mailto:<?php the_field('get_involved_button_link'); ?>"
                                    class="btn btn-primary mb-1"><?php the_field('get_involved_button_text'); ?></a>
                             <?php endif; ?>
 
@@ -162,10 +162,8 @@
                     <div class="col-lg-10 text-center">
                         <h2 class="h1 text-white"><?php the_field('our_members_section_heading'); ?></h2>
                         <?php if (get_field('our_members_section_text')): ?>
-                            <div class="px-lg-10">
-                                <p class="text-white">
-                                    <?php the_field('our_members_section_text'); ?>
-                                </p>
+                            <div class="px-lg-10 text-white">
+                                <?php the_field('our_members_section_text'); ?>
                             </div><!-- px -->
                         <?php endif; ?>
                         <div class="p-3 bg-danger">

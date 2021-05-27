@@ -2,88 +2,115 @@
 
 get_header();
 
-
 $posts = get_posts(array(
     'post_type' => 'programs',
     'order' => 'ASC',
     'posts_per_page' => -1
 ));
 
+
 ?>
 
     <!--single-programs.php-->
 
-    <main>
+    <main class="pt-2 pt-lg-4">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
 
-                    <div class="nav flex-column nav-pills"
-                         id="v-pills-tab"
-                         role="tablist"
-                         aria-orientation="vertical">
+        <section class="bg-soft-btm-logo">
 
-                        <?php
-                        $counter = 0;
-                        foreach ($posts as $i => $post) :
-                        setup_postdata($post);
-                        $post_loopSlug = $post->post_name;
-                        $tabName = strtolower(get_the_title());
-                        $tabName = preg_replace('/[^A-Za-z0-9]/', "", $tabName);
-                        $counter++;
-                        ?>
+            <div class="container">
+                <div class="row">
 
-                                <a class="nav-link <?php if ($counter == 1): ?>active<?php endif;?>"
-                                   id="v-pills-<?php echo $tabName; ?>-tab"
-                                   data-toggle="pill"
-                                   href="#v-pills-<?php echo $tabName; ?>"
-                                   role="tab"
-                                   aria-controls="v-pills-home"
-                                   aria-selected="true"
-                                >
-                                    <?php echo the_title(); ?>
-                                </a>
+                    <div class="col-lg-8 order-lg-1">
 
-                    <?php
-                    wp_reset_postdata();
-                    endforeach;
-                    setup_postdata($post);
-                    ?>
 
-                    </div><!-- nav-pills -->
-                </div><!-- col -->
-                <div class="col-lg-8">
-                    <div class="tab-content" id="v-pills-tabContent">
-
-                    <?php
-                    $counter = 0;
-                    foreach ($posts as $i => $post) :
-                    setup_postdata($post);
-                    $post_loopSlug = $post->post_name;
-                    $tabName = strtolower(get_the_title());
-                    $tabName = preg_replace('/[^A-Za-z0-9]/', "", $tabName);
-                    $counter++;
-                    ?>
-
-                        <div class="tab-pane fade show <?php if ($counter == 1): ?>active<?php endif;?>"
-                             id="v-pills-<?php echo $tabName; ?>"
-                             role="tabpanel"
-                             aria-labelledby="v-pills-<?php echo $tabName; ?>-tab"
-                        >
-                            <h1><?php the_title(); ?></h1>
+                        <h1><?php the_title(); ?></h1>
+                        <div class="pb-1 long-link-wraps">
                             <?php echo the_content(); ?>
                         </div>
 
-                    <?php
-                    wp_reset_postdata();
-                    endforeach;
-                    setup_postdata($post);
-                    ?>
-                    </div><!-- tab-content -->
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
+                        <div class="d-lg-none py-2">
+                            <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo', 'options');?>
+                            <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block mx-auto">
+                        </div>
+
+
+                    </div><!-- col -->
+
+                    <div class="col-lg-4 order-lg-0">
+
+                        <div class="pr-lg-25">
+
+                            <div class="bg-program-nav-logo mb-2">
+                                <h2 class="h1 text-white text-center pt-150 pb-1 mb-0">Programs</h2>
+                                <div class="nav flex-column nav-pills"
+                                     id="v-pills-tab"
+                                     role="tablist"
+                                     aria-orientation="vertical">
+
+                                    <?php
+
+                                    global $wp_query;
+
+                                    $currentID = $wp_query->post->ID;
+                                    //echo $currentID;
+
+
+                                    foreach ($posts as $i => $post) :
+
+                                        setup_postdata($post);
+
+                                        // Get post ID, if nothing found set to NULL
+                                        $custom_post_id = $post->ID;
+                                        //echo $custom_post_id;
+
+                                        ?>
+
+                                        <a class="nav-link rounded-0 font-weight-normal text-white text-uppercase border-bottom <?php if( $custom_post_id === $currentID):?>active<?php endif; ?>"
+                                           href="<?php echo the_permalink(); ?>"
+                                        >
+                                            <?php echo the_title(); ?>
+                                        </a>
+
+                                        <?php
+                                        wp_reset_postdata();
+                                    endforeach;
+                                    setup_postdata($post);
+                                    ?>
+
+                                </div><!-- nav-pills -->
+
+                                <div class="the-hub p-1 py-2">
+                                    <a href="https://nexusbc.rebellms.ca/">
+                                        <img src="<?php bloginfo('template_url'); ?>/images/png-thehub-logo-transparent.png"
+                                             alt="Connect with our job search resources hub"
+                                             class="img-fluid d-block mx-auto">
+                                    </a>
+                                </div>
+
+
+                            </div><!-- bg-dark -->
+
+
+                        </div><!-- pr -->
+                    </div><!-- col -->
+
+                </div><!-- row -->
+            </div><!-- container -->
+
+
+
+        </section>
+        <section class="py-2 d-none d-lg-block">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-lg-8 text-center">
+                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo', 'options');?>
+                        <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block mx-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 

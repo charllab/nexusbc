@@ -25,7 +25,7 @@
                     </div>
                 </form>
                 <div class="align-self-center d-none d-xs-flex">
-                    <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
+                    <a href="<?php echo esc_url(home_url('/donate-online')); ?>" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
                 </div>
             </div><!-- d-none d-xxxl-block -->
 
@@ -59,7 +59,7 @@
                         </div>
                     </form>
                     <div class="align-self-center">
-                        <a href="#" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
+                        <a href="<?php echo esc_url(home_url('/donate-online')); ?>" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
                     </div>
                 </div><!-- d-none d-xxxl-block -->
             </div><!-- desktop-nav -->

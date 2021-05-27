@@ -149,12 +149,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
+                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo', 'options');?>
                         <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
                     </div><!-- col -->
                     <div class="col-lg-5">
-                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>
-                        <p><?php the_field('homepage_main_sponsor_section_blurb'); ?></p>
+                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading', 'options'); ?></h2>
+                        <p><?php the_field('homepage_main_sponsor_section_blurb', 'options'); ?></p>
                     </div><!-- col -->
                 </div><!-- row -->
             </div><!-- container -->

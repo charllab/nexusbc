@@ -77,3 +77,46 @@ if (function_exists('acf_add_options_page')) {
         'redirect' => false
     ]);
 }
+
+function register_acf_block_types()
+{
+    acf_register_block_type([
+        'name' => 'simple-center-block',
+        'title' => __('Sproing Soft Blue Content Block'),
+        'description' => __('A simple soft blue center based layout block.'),
+        'render_template' => 'includes/gutenburg/simple-center-block.php',
+        'category' => 'formatting',
+        'supports' => array( 'align' => false ),
+        'icon' => 'welcome-widgets-menus',
+        'keywords' => ['layout'],
+    ]);
+}
+
+if (function_exists('acf_register_block_type')) {
+    add_action('acf/init', 'register_acf_block_types');
+}
+
+function enable_page_excerpt() {
+    add_post_type_support('page', array('excerpt'));
+}
+add_action('init', 'enable_page_excerpt');
+
+/*
+Plugin Name: Image P tag remover
+Description: Plugin to remove p tags from around images in content outputting, after WP autop filter has added them. (oh the irony)
+Version: 1.0
+Author: Fublo Ltd
+Author URI: http://fublo.net/
+*/
+
+function filter_ptags_on_images($content)
+{
+    // do a regular expression replace...
+    // find all p tags that have just
+    // <p>maybe some white space<img all stuff up to /> then maybe whitespace </p>
+    // replace it with just the image tag...
+    return preg_replace('/<p>(\s*)(<img .* \/>)(\s*)<\/p>/iU', '\2', $content);
+}
+
+// we want it to be run after the autop stuff... 10 is default.
+add_filter('the_content', 'filter_ptags_on_images');
