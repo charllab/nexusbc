@@ -170,7 +170,7 @@
                     </div><!-- col -->
                 </div><!-- row -->
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-md-4">
                         <?php echo do_shortcode('[gravityform id="3" title="false" description="false"]'); ?>
                     </div>
                 </div>

@@ -490,6 +490,17 @@ main > .container {
 
 figure > img {
     display: block;
-    width: 100%;
+    max-width: 100%;
     height: auto;
 }
+
+// search results page
+
+.post-item {
+    &:last-child
+    border-bottom {
+        border: none !important
+    }
+}
+
+

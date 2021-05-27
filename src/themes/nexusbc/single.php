@@ -5,10 +5,10 @@
     <main class="pb-2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <h1><?php the_title();?></h1>
-                    <?php the_content();?>
-                </div><!-- col -->
+
+                <?php get_template_part('partials/main/content'); ?>
+                <?php get_template_part('partials/main/sidebar'); ?>
+
             </div><!-- row -->
         </div><!-- container -->
     </main>

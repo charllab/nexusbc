@@ -5,12 +5,10 @@
     <main>
         <div class="container pb-2">
             <div class="row justify-content-start">
-                <div class="col-12 col-lg-8">
 
-                    <h1><?php the_title(); ?></h1>
-                    <?php the_content(); ?>
+                <?php get_template_part('partials/main/content'); ?>
+                <?php get_template_part('partials/main/sidebar'); ?>
 
-                </div><!-- col-->
             </div><!-- row-->
         </div><!-- container-->
     </main>

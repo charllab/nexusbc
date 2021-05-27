@@ -68,7 +68,7 @@
 
 
     <div class="d-sm-none w-100 mt-1">
-        <form id="searchForm" class="w-100" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+        <form id="searchForm" class="w-100" method="get" action="<?php echo esc_url(site_url('/')); ?>">
             <div class="input-group position-relative w-100">
                 <input type="search" class="form-control border-0 rounded-0" autocomplete="off"
                        placeholder="Search…" name="s">

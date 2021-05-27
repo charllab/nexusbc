@@ -35,6 +35,7 @@
                         <h2 class="h3 text-white mb-125">JOIN OUR NEWSLETTER</h2>
                         <?php if(get_field('join_our_newsletter_blurb', 'option')): ?><p><?php the_field('join_our_newsletter_blurb', 'option'); ?></p>
                         <?php endif; ?>
+                        <?php echo do_shortcode('[gravityform id="7" title="false" description="false"]'); ?>
                     </div><!-- pr -->
                 </div><!-- col -->
                 <div class="col-md-6 col-lg-3">
