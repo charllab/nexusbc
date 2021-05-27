@@ -15,7 +15,7 @@ $posts = get_posts(array(
 
     <main>
 
-        <section class="bg-soft-big-logo">
+        <section class="bg-soft-big-logo py-2">
 
             <div class="container">
                 <div class="row justify-content-center">
