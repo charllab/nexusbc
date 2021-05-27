@@ -46,7 +46,7 @@
                         <h2 class="h1 text-uppercase mb-2">News & Events</h2>
                     </div>
                     <div class="col-lg-6 text-lg-right">
-                        <a href="#" class="btn btn-primary mb-2">See All</a>
+                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All</a>
                     </div><!-- col -->
                 </div><!-- row -->
                 <div class="row">
