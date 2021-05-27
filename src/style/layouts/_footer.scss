@@ -4,5 +4,9 @@ footer {
     a {
         color: white !important;
         font-weight: normal !important;
+        text-decoration: underline !important;
+        &:hover {
+            color: $primary !important;
+        }
     }
 }
