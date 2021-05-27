@@ -10,7 +10,7 @@
 
                     <?php $herosliderimageurl = get_sub_field('hero_slide_image'); ?>
 
-                    <div class="hero-slide--fullheight position-relative bg-danger"
+                    <div class="hero-slide--fullheight position-relative bg-dark"
                          style="background: #3050A0 url(<?php echo $herosliderimageurl['sizes']['large']; ?>) no-repeat center center; background-size: cover;">
                         <div class="block__tint-overlay position-absolute h-100"></div>
                         <div class="item">

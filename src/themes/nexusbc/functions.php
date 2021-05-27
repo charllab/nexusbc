@@ -162,3 +162,13 @@ function filter_ptags_on_images($content)
 
 // we want it to be run after the autop stuff... 10 is default.
 add_filter('the_content', 'filter_ptags_on_images');
+
+
+// hide_admin_bar_from_front_end
+function hide_admin_bar_from_front_end(){
+    if (is_blog_admin()) {
+        return true;
+    }
+    return false;
+}
+add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
