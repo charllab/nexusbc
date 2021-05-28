@@ -190,6 +190,10 @@ main > .container {
 // supporter slider
 #supporters-slider {
 
+    .owl-dots {
+        display: none!important;
+    }
+
     padding-left: $spacer*2;
     padding-right: $spacer*2;
     position: relative;
