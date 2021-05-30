@@ -68,7 +68,8 @@
                             <a href="<?php the_permalink(); ?>">
                                 <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
                             </a>
-                            <a class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
+                            <a href="<?php the_permalink(); ?>"
+                               class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
                                 <?php
                                 $thetitle = $post->post_title; /* or you can use get_the_title() */
                                 $getlength = strlen($thetitle);
