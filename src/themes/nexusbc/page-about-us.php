@@ -142,7 +142,7 @@
                                 <p><?php the_field('get_involved_text'); ?></p>
                             </div><!-- pr -->
                         </div><!-- col -->
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 text-lg-right">
 
                             <?php if (get_field('get_involved_button_link')): ?>
                                 <a href="mailto:<?php the_field('get_involved_button_link'); ?>"
