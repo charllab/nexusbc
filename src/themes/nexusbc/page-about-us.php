@@ -41,7 +41,7 @@
                 <div class="row justify-content-center">
                     <div class="col col-lg-7 text-center pb-1 pb-lg-3">
                         <div class="px-lg-75">
-                            <h2 class="h1"><?php the_field('about_our_board_section_heading'); ?></h2>
+                            <h2><?php the_field('about_our_board_section_heading'); ?></h2>
                             <p><?php the_field('about_our_board_section_text'); ?></p>
                         </div><!-- px-->
                     </div><!-- col-->
@@ -142,7 +142,7 @@
                                 <p><?php the_field('get_involved_text'); ?></p>
                             </div><!-- pr -->
                         </div><!-- col -->
-                        <div class="col-lg-3">
+                        <div class="col-lg-5">
 
                             <?php if (get_field('get_involved_button_link')): ?>
                                 <a href="mailto:<?php the_field('get_involved_button_link'); ?>"
@@ -160,7 +160,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center">
-                        <h2 class="h1 text-white"><?php the_field('our_members_section_heading'); ?></h2>
+                        <h2 class="mb-50 text-white"><?php the_field('our_members_section_heading'); ?></h2>
                         <?php if (get_field('our_members_section_text')): ?>
                             <div class="px-lg-10 text-white">
                                 <?php the_field('our_members_section_text'); ?>
@@ -205,20 +205,18 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <img
-                                                src="<?php bloginfo('template_url'); ?>/images/svg-blue-left-quotes.svg"
-                                                alt=""
-                                                class="img-fluid d-block pl-250 pt-1">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
 
                                             <div class="owl-carousel" id="teamtestimonial_slider">
 
                                                 <?php while (have_rows('teamtestimonial_slider')) : the_row(); ?>
 
                                                     <div class="item">
+                                                        <img
+                                                            src="<?php bloginfo('template_url'); ?>/images/svg-blue-left-quotes.svg"
+                                                            alt=""
+                                                            style="width:96px;"
+                                                            class="d-block pl-250 pt-1"
+                                                        >
                                                         <div class="px-2">
                                                             <p><?php the_sub_field('team_testimonials'); ?></p>
                                                         </div>
