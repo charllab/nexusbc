@@ -217,7 +217,7 @@
                                                             style="width:96px;"
                                                             class="d-block pl-250 pt-1"
                                                         >
-                                                        <div class="px-2">
+                                                        <div class="px-md-2">
                                                             <p><?php the_sub_field('team_testimonials'); ?></p>
                                                         </div>
                                                     </div><!-- item-->

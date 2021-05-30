@@ -346,6 +346,11 @@ main > .container {
 
 #teamtestimonial_slider {
 
+    @include media-breakpoint-up(xl){
+        border-left: 20px solid $soft;
+        border-right: 20px solid $soft;
+    }
+
     .owl-nav {
         width: 100%;
         position: absolute;
