@@ -42,11 +42,11 @@
         <section class="py-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <h2 class="h1 text-uppercase mb-2">News & Events</h2>
                     </div>
-                    <div class="col-lg-6 text-lg-right">
-                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All</a>
+                    <div class="col-lg-4 text-lg-center">
+                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All POSTS</a>
                     </div><!-- col -->
                 </div><!-- row -->
                 <div class="row">
