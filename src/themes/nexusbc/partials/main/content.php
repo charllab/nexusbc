@@ -4,7 +4,7 @@
         <?php the_content(); ?>
 
 
-        <?php if (!is_tree([48])) : ?>
+        <?php if (!is_tree([48, 42])) : ?>
         <div class="py-1 mt-1">
             <a href="javascript:history.go(-1)" class="btn btn-primary">Back</a>
         </div>

@@ -119,6 +119,7 @@
                     <div class="col-sm-6 text-center text-xl-left">
                         <div class="pr-lg-2 pr-xxxl-0">
                         <a href="<?php the_field('senior_housing_guide_link'); ?>"
+                           target="_blank"
                            class="d-flex justify-content-center align-items-center
                            fake-btn fake-btn--yellow text-dark lead font-weight-bold
                            mr-xxxl-2 mb-50
@@ -132,6 +133,7 @@
                     <div class="col-sm-6 text-center text-xl-right">
                         <div class="pl-lg-2 pr-xxxl-0">
                         <a href="<?php the_field('home_support_directory'); ?>"
+                           target="_blank"
                            class="d-flex justify-content-center align-items-center
                            fake-btn fake-btn--orange text-white lead font-weight-bold
                            ml-xxxl-2 mb-50
