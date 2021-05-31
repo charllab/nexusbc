@@ -238,42 +238,7 @@
             </div><!-- container -->
         </section>
 
-        <section class="bg-soft py-2 pb-lg-3">
-
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center mb-1 mb-xxl-2">
-                        <h2 class="h1 mb-1"><?php the_field('about_our_funders_section_heading'); ?></h2>
-                        <p><?php the_field('about_our_funders_section_text'); ?></p>
-                    </div><!-- col -->
-                </div><!-- row -->
-            </div><!-- container -->
-
-
-            <div class="reverse-container py-xxl-4 py-xxxl-2">
-                <div class="container position-relative">
-                    <div class="row justify-content-center justify-content-xxl-between align-items-center">
-                        <div class="col-lg-10 col-xxl-6 p-xxl-2 text-center text-xxl-left">
-                            <div class="pr-lg-4 mb-1 pb-xxl-0">
-                                <?php the_field('about_our_funders_gratitude_block'); ?>
-                            </div><!-- pr -->
-                        </div><!-- col -->
-                    </div><!-- row -->
-
-                    <div class="funder-logos">
-                        <img src="<?php the_field('about_our_funders_logos'); ?>" alt="NexusBC Funders logos"
-                             class="img-fluid d-block mx-auto">
-                    </div><!-- funder-logos -->
-
-                </div><!-- container -->
-
-            </div><!-- position-relative -->
-
-
-        </section><!-- bg-soft -->
-
         <?php get_template_part('partials/main/supporters'); ?>
-
 
     </main>
 

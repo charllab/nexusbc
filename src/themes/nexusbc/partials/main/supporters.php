@@ -2,11 +2,31 @@
 
     <section class="py-1 bg-soft">
         <div class="container">
-            <div class="row text-center">
-                <div class="col text-center pt-50">
-                    <h2><?php the_field('supporters_section_title'); ?></h2>
-                </div><!-- col -->
-            </div><!-- row -->
+
+
+
+
+
+            <?php if (is_front_page()) : ?>
+
+                <div class="row text-center">
+                    <div class="col text-center pt-50">
+                        <h2><?php the_field('supporters_section_title', 'option'); ?></h2>
+                    </div><!-- col -->
+                </div><!-- row -->
+
+            <?php else : ?>
+
+                <div class="row text-center">
+                    <div class="col text-center pt-50">
+                        <h2><?php the_field('about_our_funders_section_heading', 'option'); ?></h2>
+                        <p><?php the_field('about_our_funders_section_text', 'option'); ?></p>
+                        <?php the_field('about_our_funders_gratitude_block', 'option'); ?>
+                    </div><!-- col -->
+                </div><!-- row -->
+
+            <?php endif; ?>
+
 
             <div class="owl-carousel" id="supporters-slider">
 
