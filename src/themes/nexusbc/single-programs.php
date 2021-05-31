@@ -98,19 +98,22 @@ $posts = get_posts(array(
                 </div><!-- row -->
             </div><!-- container -->
 
-
-
         </section>
+
+        <?php if(get_field('per_program_sponsor')) : ?>
+
         <section class="py-2 d-none d-lg-block">
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-lg-8 text-center">
-                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo', 'options');?>
+                        <?php $mainsponsor = get_field('per_program_sponsor');?>
                         <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block mx-auto">
                     </div>
                 </div>
             </div>
         </section>
+
+        <?php endif; ?>
 
     </main>
 
