@@ -81,8 +81,8 @@ $posts = get_posts(array(
                                 </div><!-- nav-pills -->
 
                                 <div class="the-hub p-1 py-2">
-                                    <a href="https://nexusbc.rebellms.ca/">
-                                        <img src="<?php bloginfo('template_url'); ?>/images/png-thehub-logo-transparent.png"
+                                    <a href="<?php the_field('hub_link'); ?>">
+                                        <img src="<?php the_field('hub_logo'); ?>"
                                              alt="Connect with our job search resources hub"
                                              class="img-fluid d-block mx-auto">
                                     </a>
