@@ -105,7 +105,7 @@
             </div><!-- container -->
         </section>
 
-        <section class="bg-soft py-3">
+        <section class="py-3">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -146,20 +146,7 @@
             </div><!-- container -->
         </section>
 
-        <section class="pt-4 pb-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo', 'options');?>
-                        <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
-                    </div><!-- col -->
-                    <div class="col-lg-5">
-                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading', 'options'); ?></h2>
-                        <p><?php the_field('homepage_main_sponsor_section_blurb', 'options'); ?></p>
-                    </div><!-- col -->
-                </div><!-- row -->
-            </div><!-- container -->
-        </section>
+
 
         <?php if (have_rows('supporters')) : ?>
 
@@ -199,6 +186,24 @@
 
                 </div><!-- container -->
             </section>
+        <?php endif; ?>
+
+
+        <?php if(get_field('show')) : ?>
+        <section class="pt-4 pb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
+                        <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
+                    </div><!-- col -->
+                    <div class="col-lg-5">
+                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>
+                        <p><?php the_field('homepage_main_sponsor_section_blurb'); ?></p>
+                    </div><!-- col -->
+                </div><!-- row -->
+            </div><!-- container -->
+        </section>
         <?php endif; ?>
 
     </main>

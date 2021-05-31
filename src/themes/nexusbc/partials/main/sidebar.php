@@ -27,7 +27,7 @@
 
             <h2 class="h3 mt-50">OUR LOCATION</h2>
             <p><?php the_field('physical_address', 'option') ?><br>
-                <a href="">Get Directions <i class="fas fa-external-link-alt ml-250"></i></a>
+                <a href="<?php the_field('google_map_link', 'option');?>">Get Directions <i class="fas fa-external-link-alt ml-250"></i></a>
             </p>
             <?php if (get_field('custom_map', 'option')): ?>
                 <?php $mapImage = get_field('custom_map', 'option'); ?>
