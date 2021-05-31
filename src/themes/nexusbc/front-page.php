@@ -46,7 +46,7 @@
                         <h2 class="h1 text-uppercase mb-2">News & Events</h2>
                     </div>
                     <div class="col-lg-4 text-lg-center">
-                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All POSTS</a>
+                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All News & Events</a>
                     </div><!-- col -->
                 </div><!-- row -->
                 <div class="row">
@@ -121,7 +121,7 @@
                         <a href="<?php the_field('senior_housing_guide_link'); ?>"
                            target="_blank"
                            class="d-flex justify-content-center align-items-center
-                           fake-btn fake-btn--yellow text-dark lead font-weight-bold
+                           fake-btn fake-btn--yellow text-dark lead-me font-weight-bold
                            mr-xxxl-2 mb-50
                            py-2 py-lg-5
                            p-md-2
@@ -135,7 +135,7 @@
                         <a href="<?php the_field('home_support_directory'); ?>"
                            target="_blank"
                            class="d-flex justify-content-center align-items-center
-                           fake-btn fake-btn--orange text-white lead font-weight-bold
+                           fake-btn fake-btn--orange text-white lead-me font-weight-bold
                            ml-xxxl-2 mb-50
                            py-2 py-lg-5
                            p-md-2

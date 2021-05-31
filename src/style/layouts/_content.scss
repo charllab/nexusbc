@@ -512,4 +512,11 @@ figure > img {
     }
 }
 
+//  show back button for news and events singles
+body.news-and-events {
+    .show-for-news-and-events-cat {
+        display: block !important;
+    }
+}
+
 
