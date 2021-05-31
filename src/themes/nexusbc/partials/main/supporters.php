@@ -4,9 +4,6 @@
         <div class="container">
 
 
-
-
-
             <?php if (is_front_page()) : ?>
 
                 <div class="row text-center">
@@ -17,10 +14,10 @@
 
             <?php else : ?>
 
-                <div class="row text-center">
-                    <div class="col text-center pt-50">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8 text-center py-1">
                         <h2><?php the_field('about_our_funders_section_heading', 'option'); ?></h2>
-                        <p><?php the_field('about_our_funders_section_text', 'option'); ?></p>
+                        <h3><?php the_field('about_our_funders_section_text', 'option'); ?></h3>
                         <?php the_field('about_our_funders_gratitude_block', 'option'); ?>
                     </div><!-- col -->
                 </div><!-- row -->
