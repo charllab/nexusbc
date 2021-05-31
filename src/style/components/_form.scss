@@ -23,3 +23,15 @@ $searchform-height: 48px;
         }
     }
 }
+
+//captcha mobile fix
+@media (max-width: 361.98px) {
+    #gform_wrapper_2 div.ginput_recaptcha {
+        -ms-transform: scale(.8);
+        transform: scale(.8);
+        -webkit-transform: scale(.8);
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0
+    }
+}
