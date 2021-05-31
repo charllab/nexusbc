@@ -125,7 +125,7 @@
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-7">
-                            <span>SENIORS HOUSING GUIDE</span>
+                            <span><?php the_field('senior_housing_guide_title');?></span>
                         </a>
                         </div><!-- pr -->
                     </div><!-- col -->
@@ -138,7 +138,7 @@
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-6 ">
-                            <span>HOME SUPPORT DIRECTORY</span>
+                            <span><?php the_field('home_support_directory_title');?></span>
                         </a>
                         </div><!-- pl -->
                     </div><!-- col -->
