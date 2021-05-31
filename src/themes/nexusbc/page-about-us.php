@@ -272,6 +272,8 @@
 
         </section><!-- bg-soft -->
 
+        <?php get_template_part('partials/main/supporters'); ?>
+
 
     </main>
 
