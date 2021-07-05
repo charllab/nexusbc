@@ -67,16 +67,16 @@
                         <div class="col-md-4">
                             <a href="<?php the_permalink(); ?>">
                                 <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
-                            </a>
-                            <a href="<?php the_permalink(); ?>"
-                               class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
-                                <?php
-                                $thetitle = $post->post_title; /* or you can use get_the_title() */
-                                $getlength = strlen($thetitle);
-                                $thelength = 32;
-                                echo substr($thetitle, 0, $thelength);
-                                if ($getlength > $thelength) echo "&hellip;";
-                                ?>
+                                <div
+                                   class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
+                                    <?php
+                                    $thetitle = $post->post_title; /* or you can use get_the_title() */
+                                    $getlength = strlen($thetitle);
+                                    $thelength = 32;
+                                    echo substr($thetitle, 0, $thelength);
+                                    if ($getlength > $thelength) echo "&hellip;";
+                                    ?>
+                                </div>
                             </a>
                         </div><!-- col -->
 

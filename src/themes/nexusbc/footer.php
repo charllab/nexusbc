@@ -41,7 +41,7 @@
                 <div class="col-md-6 col-lg-3">
                     <h2 class="h3 text-white mb-125">OUR LOCATION</h2>
                     <p><?php the_field('physical_address', 'option')?><br>
-                       <a href="<?php the_field('google_map_link', 'option');?>" class="text-white">Get Directions <i class="fas fa-external-link-alt ml-250"></i></a>
+                       <a href="<?php the_field('google_map_link', 'option');?>" class="text-white" target="_blank">Get Directions <i class="fas fa-external-link-alt ml-250"></i></a>
                     </p>
                     <?php if(get_field('custom_map', 'option')):?>
                     <?php $mapImage = get_field('custom_map', 'option'); ?>
