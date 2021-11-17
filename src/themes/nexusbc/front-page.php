@@ -22,8 +22,11 @@
                                         </h1>
                                         <p class="lead text-white mb-2 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
                                         <?php if (get_sub_field('hero_slide_button_text')): ?>
-                                            <a href="<?php the_sub_field('hero_slide_button_link'); ?>"
-                                               class="btn btn-primary" class="text-white mb-1">
+                                            <!-- Create variable Link, that includes array with link info -->
+                                            <?php $link = get_sub_field('hero_slide_button_link');?>
+                                            <a href="<?php echo $link['url'];?>" 
+                                                target="<?php echo $link['target'] ? $link['target'] : '_self';?>"
+                                                class="btn btn-primary" class="text-white mb-1">
                                                 <?php the_sub_field('hero_slide_button_text'); ?>
                                             </a>
                                         <?php endif; ?>
