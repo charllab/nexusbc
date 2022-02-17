@@ -119,16 +119,16 @@ var trackPixel = function (name, options) {
     }
 };
 
-var targetBlankExternalLinks = function () {
-    var internalLinkRegex = new RegExp('^((((http:\\/\\/|https:\\/\\/)(www\\.)?)?'
-        + window.location.hostname
-        + ')|(localhost:\\d{4})|(\\/.*))(\\/.*)?$', '');
-
-    jQuery('a').filter(function () {
-        var href = jQuery(this).attr('href');
-        return !internalLinkRegex.test(href);
-    })
-        .each(function () {
-            jQuery(this).attr('target', '_blank');
-        });
-};
+// var targetBlankExternalLinks = function () {
+//     var internalLinkRegex = new RegExp('^((((http:\\/\\/|https:\\/\\/)(www\\.)?)?'
+//         + window.location.hostname
+//         + ')|(localhost:\\d{4})|(\\/.*))(\\/.*)?$', '');
+//
+//     jQuery('a').filter(function () {
+//         var href = jQuery(this).attr('href');
+//         return !internalLinkRegex.test(href);
+//     })
+//         .each(function () {
+//             jQuery(this).attr('target', '_blank');
+//         });
+// };
