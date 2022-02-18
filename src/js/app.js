@@ -1,5 +1,29 @@
 jQuery(function () {
 
+    // ajax load
+    // get a tag
+
+    $(document).on('click', '.js-filter-item', function(e) {
+        e.preventDefault();
+
+        // data-category tag on a tag
+        var category = $(this).data('category');
+
+        $.ajax({
+         // needs to match localized script in functions.php
+            url: wpAjax.ajaxUrl,
+            data: { action: 'filter', category: category},
+            type: 'directories',
+            success: function (result) {
+                // target item via class
+                $('.js-directory-filter').html(result);
+            },
+            error: function (result) {
+                console.warn(result);
+            }
+        })
+    });
+
     // get header heights
     function setMainMarginTop() {
         var headerHeight = jQuery('#header').outerHeight();
@@ -132,3 +156,4 @@ var trackPixel = function (name, options) {
 //             jQuery(this).attr('target', '_blank');
 //         });
 // };
+

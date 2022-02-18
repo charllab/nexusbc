@@ -3,6 +3,86 @@
     <!--front-page.php-->
     <main>
 
+        <!--start-->
+
+
+        <!--js class for categories -->
+
+        <div class="js-categories">
+            <ul class="list-unstyled">
+            <?php
+
+            // set arguments for categories
+
+            $cat_args = array(
+                // 1 is normally uncategorized
+                'exclude' => array(1),
+                'option_all' => 'All'
+            );
+
+            // set categories with arguments
+
+            $categories = get_categories($cat_args);
+
+            foreach ($categories as $cat) :
+                //for testing only
+                //echo '<pre>';
+                //print_r($cat);
+                //echo '</pre>';
+            ?>
+            <li>
+                <a
+                    href="<?php echo get_category_link($cat->term_id); ?>"
+                    class="js-filter-item"
+                    data-category="<?php echo $cat->term_id; ?>"
+                >
+
+                    <?php echo $cat->name; ?>
+                </a>
+            </li>
+            <?php
+            endforeach;
+
+            wp_reset_postdata();
+
+            ?>
+            </ul>
+        </div><!-- categories -->
+
+
+
+        <!--js class for targeting -->
+        <div class="js-directory-filter">
+
+        <?php
+        // set arguments of query
+        $args = array(
+            'post_type' => 'directories',
+            'post_per_page' => -1
+        );
+
+        // create new query with arguments
+        // uses WP_Query object
+        $query = new WP_Query($args);
+
+
+        // if query has post
+        if($query->have_posts()) :
+            while($query->have_posts()) : $query->the_post();
+            // do something
+                the_title('<h2>', '</h2>');
+            endwhile;
+        endif;
+
+        // when done reset post data to continue flow
+        wp_reset_postdata();
+
+        ?>
+
+        </div><!-- js-directory-filter-->
+
+        <!--end-->
+
         <?php if (have_rows('hero_slide')): ?>
             <div class="owl-carousel z-index-1 position-relative" id="hero-slider">
 
@@ -24,7 +104,7 @@
                                         <?php if (get_sub_field('hero_slide_button_text')): ?>
                                             <!-- Create variable Link, that includes array with link info -->
                                             <?php $link = get_sub_field('hero_slide_button_link');?>
-                                            <a href="<?php echo $link['url'];?>" 
+                                            <a href="<?php echo $link['url'];?>"
                                                 target="<?php echo $link['target'] ? $link['target'] : '_self';?>"
                                                 class="btn btn-primary" class="text-white mb-1">
                                                 <?php the_sub_field('hero_slide_button_text'); ?>
