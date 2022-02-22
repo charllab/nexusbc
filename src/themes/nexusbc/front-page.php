@@ -3,86 +3,6 @@
     <!--front-page.php-->
     <main>
 
-        <!--start-->
-
-
-        <!--js class for categories -->
-
-        <div class="js-categories">
-            <ul class="list-unstyled">
-            <?php
-
-            // set arguments for categories
-
-            $cat_args = array(
-                // 1 is normally uncategorized
-                'exclude' => array(1),
-                'option_all' => 'All'
-            );
-
-            // set categories with arguments
-
-            $categories = get_categories($cat_args);
-
-            foreach ($categories as $cat) :
-                //for testing only
-                //echo '<pre>';
-                //print_r($cat);
-                //echo '</pre>';
-            ?>
-            <li>
-                <a
-                    href="<?php echo get_category_link($cat->term_id); ?>"
-                    class="js-filter-item"
-                    data-category="<?php echo $cat->term_id; ?>"
-                >
-
-                    <?php echo $cat->name; ?>
-                </a>
-            </li>
-            <?php
-            endforeach;
-
-            wp_reset_postdata();
-
-            ?>
-            </ul>
-        </div><!-- categories -->
-
-
-
-        <!--js class for targeting -->
-        <div class="js-directory-filter">
-
-        <?php
-        // set arguments of query
-        $args = array(
-            'post_type' => 'directories',
-            'post_per_page' => -1
-        );
-
-        // create new query with arguments
-        // uses WP_Query object
-        $query = new WP_Query($args);
-
-
-        // if query has post
-        if($query->have_posts()) :
-            while($query->have_posts()) : $query->the_post();
-            // do something
-                the_title('<h2>', '</h2>');
-            endwhile;
-        endif;
-
-        // when done reset post data to continue flow
-        wp_reset_postdata();
-
-        ?>
-
-        </div><!-- js-directory-filter-->
-
-        <!--end-->
-
         <?php if (have_rows('hero_slide')): ?>
             <div class="owl-carousel z-index-1 position-relative" id="hero-slider">
 
@@ -105,8 +25,8 @@
                                             <!-- Create variable Link, that includes array with link info -->
                                             <?php $link = get_sub_field('hero_slide_button_link');?>
                                             <a href="<?php echo $link['url'];?>"
-                                                target="<?php echo $link['target'] ? $link['target'] : '_self';?>"
-                                                class="btn btn-primary" class="text-white mb-1">
+                                               target="<?php echo $link['target'] ? $link['target'] : '_self';?>"
+                                               class="btn btn-primary" class="text-white mb-1">
                                                 <?php the_sub_field('hero_slide_button_text'); ?>
                                             </a>
                                         <?php endif; ?>
@@ -151,7 +71,7 @@
                             <a href="<?php the_permalink(); ?>">
                                 <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
                                 <div
-                                   class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
+                                    class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
                                     <?php
                                     $thetitle = $post->post_title; /* or you can use get_the_title() */
                                     $getlength = strlen($thetitle);
@@ -201,30 +121,30 @@
                 <div class="row">
                     <div class="col-sm-6 text-center text-xl-left">
                         <div class="pr-lg-2 pr-xxxl-0">
-                        <a href="<?php the_field('senior_housing_guide_link'); ?>"
-                           target="_blank"
-                           class="d-flex justify-content-center align-items-center
+                            <a href="<?php the_field('senior_housing_guide_link'); ?>"
+                               target="_blank"
+                               class="d-flex justify-content-center align-items-center
                            fake-btn fake-btn--yellow text-dark lead-me font-weight-bold
                            mr-xxxl-2 mb-50
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-7">
-                            <span><?php the_field('senior_housing_guide_title');?></span>
-                        </a>
+                                <span><?php the_field('senior_housing_guide_title');?></span>
+                            </a>
                         </div><!-- pr -->
                     </div><!-- col -->
                     <div class="col-sm-6 text-center text-xl-right">
                         <div class="pl-lg-2 pr-xxxl-0">
-                        <a href="<?php the_field('home_support_directory'); ?>"
-                           target="_blank"
-                           class="d-flex justify-content-center align-items-center
+                            <a href="<?php the_field('home_support_directory'); ?>"
+                               target="_blank"
+                               class="d-flex justify-content-center align-items-center
                            fake-btn fake-btn--orange text-white lead-me font-weight-bold
                            ml-xxxl-2 mb-50
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-6 ">
-                            <span><?php the_field('home_support_directory_title');?></span>
-                        </a>
+                                <span><?php the_field('home_support_directory_title');?></span>
+                            </a>
                         </div><!-- pl -->
                     </div><!-- col -->
                 </div><!-- row -->
@@ -236,20 +156,20 @@
 
 
         <?php if(get_field('show')) : ?>
-        <section class="pt-4 pb-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
-                        <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
-                    </div><!-- col -->
-                    <div class="col-lg-5">
-                        <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>
-                        <p><?php the_field('homepage_main_sponsor_section_blurb'); ?></p>
-                    </div><!-- col -->
-                </div><!-- row -->
-            </div><!-- container -->
-        </section>
+            <section class="pt-4 pb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
+                            <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
+                        </div><!-- col -->
+                        <div class="col-lg-5">
+                            <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>
+                            <p><?php the_field('homepage_main_sponsor_section_blurb'); ?></p>
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- container -->
+            </section>
         <?php endif; ?>
 
     </main>

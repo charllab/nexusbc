@@ -134,3 +134,21 @@ body .gform_wrapper .gform_footer input[type=submit] {
     border: none;
     padding: $spacer*.35 $spacer*1.5;
 }
+
+.btn-print {
+    @extend .btn;
+    border: none;
+    padding: $spacer*.2 $spacer;
+    color: white !important;
+    text-transform: capitalize;
+    font-weight: 700;
+    border-radius: 4px;
+    line-height: 2;
+    box-shadow: none!important;
+    position: relative;
+    z-index: 1;
+    background-color: $primary!important;
+    &:hover {
+        background: #0076a3!important;
+    }
+}

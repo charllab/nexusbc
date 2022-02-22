@@ -519,4 +519,18 @@ body.news-and-events {
     }
 }
 
+// services directory
+.filter-category {
+    border-radius: 20px;
+    text-transform: capitalize;
+    &.active {
+        background-color: $secondary !important;
+        color: white !important;
+    }
+}
+
+#search-keyword {
+    padding: $spacer*1.15 $spacer*.55;
+}
+
 

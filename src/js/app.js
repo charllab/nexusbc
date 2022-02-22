@@ -7,21 +7,20 @@ jQuery(function () {
         e.preventDefault();
 
         // data-category tag on a tag
-        var category = $(this).data('category');
+        var category  = $(this).data('category');
 
         $.ajax({
-         // needs to match localized script in functions.php
+            // comes from function.php wp_localize_scripts
             url: wpAjax.ajaxUrl,
-            data: { action: 'filter', category: category},
-            type: 'directories',
-            success: function (result) {
-                // target item via class
-                $('.js-directory-filter').html(result);
-            },
-            error: function (result) {
+            data: {action: 'filter', category: category},
+            //  doesn't matter
+            type: 'post',
+            success: function(result) {
+                $('.js-directory-listing-target').html(result);
+            }, error: function(result) {
                 console.warn(result);
-            }
-        })
+            },
+        });
     });
 
     // get header heights

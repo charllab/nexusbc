@@ -18,7 +18,6 @@ if (!function_exists('enqueue_scripts')) {
     function enqueue_scripts()
     {
 
-
         // Register our own jquery
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
@@ -26,13 +25,88 @@ if (!function_exists('enqueue_scripts')) {
         wp_enqueue_script('header_js', get_stylesheet_directory_uri().'/js/header-bundle.js', null, HEADERBUNDLE_VERSION, false);
         wp_enqueue_script('footer_js', get_stylesheet_directory_uri().'/js/footer-bundle.js', null, FOOTERBUNDLE_VERSION, true);
 
-        // localise the ajax script used in app.js
+        // localise the ajax script used in app.js = making the script available to JavaScript
         wp_localize_script('footer_js', 'wpAjax', array(
             'ajaxUrl' => admin_url('admin-ajax.php')
         ));
     }
+}
 
+// ajax script
+// wp_ajax_nopriv_{$action} needs to match jquery action tag
+add_action('wp_ajax_nopriv_filter', 'filter_ajax');
+// wp_ajax_{$action}
+add_action('wp_ajax_filter', 'filter_ajax');
 
+// always call die() first!
+function filter_ajax () {
+
+    $category = $_POST['category'];
+
+    $args = array(
+        'post_type' => 'service-directories',
+        'posts_per_page' => -1
+    );
+
+    if(!empty($category)){
+        $args['tax_query'] = array(
+          array(
+              'taxonomy' => 'category',
+              'field'    => 'term_id',
+              'terms'    => array($category)
+          )
+        );
+    }
+
+    $catname = get_cat_name($category);
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+
+        echo '<h2 class="h1 mb-2">Showing listings for ' . $catname . ' <a href="#" class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        while ($query->have_posts()) :
+            $query->the_post(); ?>
+
+            <div class="mb-4">
+                <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
+
+                <?php the_field('services_provided'); ?>
+
+                <p><b>Services available in:</b>
+                    <?php the_field('services_provided_locations'); ?>
+                </p>
+
+                <p class="mb-0"><b>Tel</b>: <?php the_field('phone_number'); ?></p>
+
+                <?php if(get_field('email_address')): ?>
+                    <p class="mb-0"><b>Email</b>: <?php the_field('email_address'); ?></p>
+                <?php endif; ?>
+
+                <?php if(get_field('website_url')): ?>
+                    <p class="mb-0"><b>Website</b>: <a href=" <?php the_field('website_url'); ?>" target="_blank">
+                            <?php the_field('website_url'); ?>
+                        </a>
+                    </p>
+                <?php endif; ?>
+
+                <?php if(get_field('rates')): ?>
+                    <p><b>Hourly rate</b>: <?php the_field('rates'); ?></p>
+                <?php endif; ?>
+            </div><!-- mb-1 -->
+
+        <?php endwhile;
+
+    else:
+        if(!empty($category)) {
+            echo '<p>Sorry. There are currently no listing for <b>' . ucwords($catname) . '</b> at the moment.</p>';
+        } else {
+            echo '<p>Sorry. There are currently no listing for that specific category at the moment.</p>';
+        }
+    endif;
+    wp_reset_postdata();
+
+    die();
 }
 
 /**
@@ -196,3 +270,12 @@ function add_category_to_single($classes) {
     // return the $classes array
     return $classes;
 }
+
+/* --------------------
+/  move Yoast to bottom
+/  -------------------- */
+function yoast_to_bottom()
+{
+    return 'low';
+}
+add_filter('wpseo_metabox_prio', 'yoast_to_bottom');
