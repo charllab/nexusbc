@@ -74,9 +74,9 @@ function filter_ajax()
     if ($query->have_posts()) :
 
         if(!empty($cat->count)){
-            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name .  ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name .  ' ' . '(' . $query->found_posts . ') <a href="#" onclick="window.print(); return false;" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         }else {
-            echo '<h2 class="h1 mb-2">Showing listings for All' .  ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+            echo '<h2 class="h1 mb-2">Showing listings for All' .  ' ' . '(' . $query->found_posts . ') <a href="#" onclick="window.print(); return false;" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         }
 
         while ($query->have_posts()) :
@@ -84,7 +84,7 @@ function filter_ajax()
         ?>
 
             <div class="mb-4">
-                <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
+                <h2><?php the_title(); ?> <a href="#" class="printAll"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
 
                 <?php the_field('services_provided'); ?>
 
