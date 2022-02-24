@@ -61,8 +61,6 @@ function filter_ajax()
         );
     }
 
-    $catname = $category->name;
-
     // search bar
     if (!empty($search_entry)) {
         $args['s'] = $search_entry;
@@ -70,17 +68,14 @@ function filter_ajax()
 
     $query = new WP_Query($args);
 
+    echo '<h2 class="h1 mb-2">Showing listings for ' . $query->name . ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+
+
     if ($query->have_posts()) :
 
         while ($query->have_posts()) :
             $query->the_post();
-            $terms = get_the_terms($query->ID, 'services_type');
-
-            foreach ($terms as $term) {
-
-                echo '<h2 class="h1 mb-2">Showing listings for ' . $term->name . ' ' . '(' . $term->count . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
-
-            } ?>
+        ?>
 
             <div class="mb-4">
                 <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
