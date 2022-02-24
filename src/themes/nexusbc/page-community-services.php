@@ -29,8 +29,9 @@ while (have_posts()) :
                             <ul class="list-unstyled d-flex flex-wrap">
                                 <li class="d-flex">
                                     <a href="#"
+                                       data-category=""
                                        class="js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
-                                        All (<?php $count = count($categories); echo $count; ?>)
+                                        All (<?php echo $count_posts = wp_count_posts( 'service-directories' )->publish; ?>)
                                     </a>
                                 </li>
                                 <?php foreach ($categories as $category) : ?>

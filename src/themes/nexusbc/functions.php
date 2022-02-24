@@ -67,11 +67,17 @@ function filter_ajax()
     }
 
     $query = new WP_Query($args);
+    $cat = get_term($category, 'services_type');
 
-    echo '<h2 class="h1 mb-2">Showing listings for ' . $query->name . ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
 
 
     if ($query->have_posts()) :
+
+        if(!empty($cat->count)){
+            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name .  ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        }else {
+            echo '<h2 class="h1 mb-2">Showing listings for All' .  ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        }
 
         while ($query->have_posts()) :
             $query->the_post();
