@@ -20,21 +20,29 @@ while (have_posts()) :
                             <?php
                             $categories = get_terms(array(
                                 'post_type' => 'service-directories',
-                                'taxonomy' => 'category',
+                                'taxonomy' => 'services_type',
                                 'order' => 'ASC',
                                 'exclude' => array(1),
                                 'hide_empty' => false
                             ));
                             ?>
                             <ul class="list-unstyled d-flex flex-wrap">
+                                <li class="d-flex">
+                                    <a href="#"
+                                       class="js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
+                                        All (<?php $count = count($categories); echo $count; ?>)
+                                    </a>
+                                </li>
                                 <?php foreach ($categories as $category) : ?>
                                     <li class="d-flex">
                                         <a href="#" data-category="<?php echo $category->term_id; ?>"
                                            class="js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
-                                            <?php echo trim($category->name) . '(' . $category->count . ')'; ?>
+                                            <?php echo trim($category->name) . '&nbsp;' . '(' . $category->count . ')'; ?>
                                         </a>
                                     </li>
-                                <?php endforeach; ?>
+                                <?php endforeach;
+                                wp_reset_postdata();
+                                ?>
                             </ul>
                         </div><!-- filter -->
 
@@ -49,17 +57,14 @@ while (have_posts()) :
                                 <div class="col-md-4 col-lg-2">
                                 <fieldset class="group">
                                     <button class="btn btn-primary ml-50 border-0 rounded-0">Search</button>
-                                    <input type="hidden" name="action" value="search">
+                                    <input type="hidden" name="action" value="submit">
                                 </fieldset>
                                 </div><!-- col -->
                                 </div><!-- flow row -->
                             </form>
                         </div><!-- search-keywords -->
 
-
-                        <div class="js-directory-listing-target">
-
-                            <h2 class="h1 mb-2">Showing listings for Elder Abuse (5) <a href="#" class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>
+                        <div class="js-filter">
                             <?php
                             $args = array(
                                 'post_type' => 'service-directories',
@@ -69,10 +74,38 @@ while (have_posts()) :
 
                             $query = new WP_Query($args);
 
+                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+
                             if ($query->have_posts()) :
 
                                 while ($query->have_posts()) :
-                                    $query->the_post(); ?>
+                                    $query->the_post();
+
+                                    $movie_id = get_the_ID();
+                                    $url = get_the_permalink();
+                                    $title = get_the_title();
+                                    $taxonomy = 'services_type';
+
+                                    $post_terms = wp_get_object_terms( $movie_id, $taxonomy, array( 'fields' => 'ids' ) );
+
+                                    // Separator between links.
+                                    $separator = ', ';
+
+                                    if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
+
+                                        $term_ids = implode( ',' , $post_terms );
+
+                                        $terms = wp_list_categories( array(
+                                            'title_li' => '',
+                                            'style'    => 'none',
+                                            'echo'     => false,
+                                            'taxonomy' => $taxonomy,
+                                            'include'  => $term_ids
+                                        ) );
+
+                                        $terms = rtrim( trim( str_replace( '<br />',  $separator, $terms ) ), $separator );
+                                    }
+                            ?>
 
                                 <div class="mb-4">
                                     <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
@@ -111,9 +144,8 @@ while (have_posts()) :
                 </div><!-- col -->
                 <div class="col-lg-5 col-xl-4">
 
-
                     <?php if(get_field('get_listed_instruction')): ?>
-                    <div class="ml-lg-2">
+                    <div class="ml-lg-2 mb-4">
                         <div class="pt-1 pb-75 px-2 bg-soft">
                         <?php the_field('get_listed_instruction'); ?>
                         </div><!-- bg-soft -->

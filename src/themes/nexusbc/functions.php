@@ -1,7 +1,7 @@
 <?php
 /* Require Includes */
-include_once get_template_directory().'/includes/gutenburg.php';
-include_once get_template_directory().'/includes/helper-functions.php';
+include_once get_template_directory() . '/includes/gutenburg.php';
+include_once get_template_directory() . '/includes/helper-functions.php';
 //include_once get_template_directory().'/includes/bootstrap-wp-navwalker.php';
 //include_once get_template_directory().'/includes/acf-custom-widget.php';
 
@@ -11,9 +11,9 @@ if (!function_exists('enqueue_scripts')) {
     add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
     // Cache bust constants
-    define('THEMESTYLE_VERSION', filemtime(get_stylesheet_directory().'/style/style.css'));
-    define('HEADERBUNDLE_VERSION', filemtime(get_stylesheet_directory().'/js/header-bundle.js'));
-    define('FOOTERBUNDLE_VERSION', filemtime(get_stylesheet_directory().'/js/footer-bundle.js'));
+    define('THEMESTYLE_VERSION', filemtime(get_stylesheet_directory() . '/style/style.css'));
+    define('HEADERBUNDLE_VERSION', filemtime(get_stylesheet_directory() . '/js/header-bundle.js'));
+    define('FOOTERBUNDLE_VERSION', filemtime(get_stylesheet_directory() . '/js/footer-bundle.js'));
 
     function enqueue_scripts()
     {
@@ -21,9 +21,9 @@ if (!function_exists('enqueue_scripts')) {
         // Register our own jquery
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-        wp_enqueue_style('style_file', get_stylesheet_directory_uri().'/style/style.css', [], THEMESTYLE_VERSION);
-        wp_enqueue_script('header_js', get_stylesheet_directory_uri().'/js/header-bundle.js', null, HEADERBUNDLE_VERSION, false);
-        wp_enqueue_script('footer_js', get_stylesheet_directory_uri().'/js/footer-bundle.js', null, FOOTERBUNDLE_VERSION, true);
+        wp_enqueue_style('style_file', get_stylesheet_directory_uri() . '/style/style.css', [], THEMESTYLE_VERSION);
+        wp_enqueue_script('header_js', get_stylesheet_directory_uri() . '/js/header-bundle.js', null, HEADERBUNDLE_VERSION, false);
+        wp_enqueue_script('footer_js', get_stylesheet_directory_uri() . '/js/footer-bundle.js', null, FOOTERBUNDLE_VERSION, true);
 
         // localise the ajax script used in app.js = making the script available to JavaScript
         wp_localize_script('footer_js', 'wpAjax', array(
@@ -39,34 +39,48 @@ add_action('wp_ajax_nopriv_filter', 'filter_ajax');
 add_action('wp_ajax_filter', 'filter_ajax');
 
 // always call die() first!
-function filter_ajax () {
+function filter_ajax()
+{
 
+    // comes from app.js
     $category = $_POST['category'];
+    $search_entry = $_POST['search-keyword'];
 
     $args = array(
         'post_type' => 'service-directories',
         'posts_per_page' => -1
     );
 
-    if(!empty($category)){
+    if (!empty($category)) {
         $args['tax_query'] = array(
-          array(
-              'taxonomy' => 'category',
-              'field'    => 'term_id',
-              'terms'    => array($category)
-          )
+            array(
+                'taxonomy' => 'services_type',
+                'field' => 'term_id',
+                'terms' => array($category)
+            )
         );
     }
 
-    $catname = get_cat_name($category);
+    $catname = $category->name;
+
+    // search bar
+    if (!empty($search_entry)) {
+        $args['s'] = $search_entry;
+    }
 
     $query = new WP_Query($args);
 
     if ($query->have_posts()) :
 
-        echo '<h2 class="h1 mb-2">Showing listings for ' . $catname . ' <a href="#" class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         while ($query->have_posts()) :
-            $query->the_post(); ?>
+            $query->the_post();
+            $terms = get_the_terms($query->ID, 'services_type');
+
+            foreach ($terms as $term) {
+
+                echo '<h2 class="h1 mb-2">Showing listings for ' . $term->name . ' ' . '(' . $term->count . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+
+            } ?>
 
             <div class="mb-4">
                 <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
@@ -79,18 +93,18 @@ function filter_ajax () {
 
                 <p class="mb-0"><b>Tel</b>: <?php the_field('phone_number'); ?></p>
 
-                <?php if(get_field('email_address')): ?>
+                <?php if (get_field('email_address')): ?>
                     <p class="mb-0"><b>Email</b>: <?php the_field('email_address'); ?></p>
                 <?php endif; ?>
 
-                <?php if(get_field('website_url')): ?>
+                <?php if (get_field('website_url')): ?>
                     <p class="mb-0"><b>Website</b>: <a href=" <?php the_field('website_url'); ?>" target="_blank">
                             <?php the_field('website_url'); ?>
                         </a>
                     </p>
                 <?php endif; ?>
 
-                <?php if(get_field('rates')): ?>
+                <?php if (get_field('rates')): ?>
                     <p><b>Hourly rate</b>: <?php the_field('rates'); ?></p>
                 <?php endif; ?>
             </div><!-- mb-1 -->
@@ -98,10 +112,12 @@ function filter_ajax () {
         <?php endwhile;
 
     else:
-        if(!empty($category)) {
-            echo '<p>Sorry. There are currently no listing for <b>' . ucwords($catname) . '</b> at the moment.</p>';
+        if (!empty($category)) {
+            $cat = get_term($category);
+            echo '<h1>There are currently no providers in our directory for the category of <b>' . strtolower($cat->name) . '</b> at the moment.</h1>';
+            echo '<p>Do you perhaps provide a local service for the category of <b>' . strtolower($cat->name) . '</b>? Please see the sidebar on how to get listed in this directory.</p>';
         } else {
-            echo '<p>Sorry. There are currently no listing for that specific category at the moment.</p>';
+            echo '<h2>There are currently no providers in our directory for that specific category at the moment.</h2>';
         }
     endif;
     wp_reset_postdata();
@@ -112,10 +128,12 @@ function filter_ajax () {
 /**
  * Register Custom Navigation Walker
  */
-function register_navwalker(){
+function register_navwalker()
+{
     require_once get_template_directory() . '/includes/class-wp-bootstrap-navwalker.php';
 }
-add_action( 'after_setup_theme', 'register_navwalker' );
+
+add_action('after_setup_theme', 'register_navwalker');
 
 if (!function_exists('custom_after_setup_theme')) {
 
@@ -124,7 +142,7 @@ if (!function_exists('custom_after_setup_theme')) {
     function custom_after_setup_theme()
     {
         remove_theme_support('custom-background');;
-        add_theme_support( 'post-thumbnails' );
+        add_theme_support('post-thumbnails');
 
         register_nav_menus([
             'primary' => 'Primary Menu',
@@ -168,7 +186,7 @@ function register_acf_block_types()
         'description' => __('A simple soft blue center based layout block.'),
         'render_template' => 'includes/gutenburg/simple-center-block.php',
         'category' => 'formatting',
-        'supports' => array( 'align' => false ),
+        'supports' => array('align' => false),
         'icon' => 'welcome-widgets-menus',
         'keywords' => ['layout'],
     ]);
@@ -178,9 +196,11 @@ if (function_exists('acf_register_block_type')) {
     add_action('acf/init', 'register_acf_block_types');
 }
 
-function enable_page_excerpt() {
+function enable_page_excerpt()
+{
     add_post_type_support('page', array('excerpt'));
 }
+
 add_action('init', 'enable_page_excerpt');
 
 
@@ -200,10 +220,10 @@ function bootstrap_pagination($echo = true)
         'format' => '?paged=%#%',
         'current' => max(1, get_query_var('paged')),
         'total' => $wp_query->max_num_pages,
-        'type'  => 'array',
-        'prev_next'   => true,
-        'prev_text'    => __('«'),
-        'next_text'    => __('»'),
+        'type' => 'array',
+        'prev_next' => true,
+        'prev_text' => __('«'),
+        'next_text' => __('»'),
     ));
 
     if (is_array($pages)) {
@@ -247,22 +267,25 @@ add_filter('the_content', 'filter_ptags_on_images');
 
 
 // hide_admin_bar_from_front_end
-function hide_admin_bar_from_front_end(){
+function hide_admin_bar_from_front_end()
+{
     if (is_blog_admin()) {
         return true;
     }
     return false;
 }
-add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
+
+add_filter('show_admin_bar', 'hide_admin_bar_from_front_end');
 
 // Add Category Name to body_class
 // https://css-tricks.com/snippets/wordpress/add-category-name-body_class/
 
-add_filter('body_class','add_category_to_single');
-function add_category_to_single($classes) {
-    if (is_single() ) {
+add_filter('body_class', 'add_category_to_single');
+function add_category_to_single($classes)
+{
+    if (is_single()) {
         global $post;
-        foreach((get_the_category($post->ID)) as $category) {
+        foreach ((get_the_category($post->ID)) as $category) {
             // add category slug to the $classes array
             $classes[] = $category->category_nicename;
         }
@@ -278,4 +301,5 @@ function yoast_to_bottom()
 {
     return 'low';
 }
+
 add_filter('wpseo_metabox_prio', 'yoast_to_bottom');

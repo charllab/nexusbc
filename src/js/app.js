@@ -1,22 +1,21 @@
 jQuery(function () {
 
-    // ajax load
-    // get a tag
+    // ajax load for services directory
 
     $(document).on('click', '.js-filter-item', function(e) {
         e.preventDefault();
 
-        // data-category tag on a tag
+        // data-category tag on a tag and set in ajax-function php
         var category  = $(this).data('category');
 
         $.ajax({
             // comes from function.php wp_localize_scripts
             url: wpAjax.ajaxUrl,
-            data: {action: 'filter', category: category},
+            data: {action: 'filter', category : category},
             //  doesn't matter
             type: 'post',
             success: function(result) {
-                $('.js-directory-listing-target').html(result);
+                $('.js-filter').html(result);
             }, error: function(result) {
                 console.warn(result);
             },
