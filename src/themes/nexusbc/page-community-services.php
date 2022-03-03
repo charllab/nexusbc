@@ -48,7 +48,7 @@ while (have_posts()) :
                         </div><!-- filter -->
 
                         <div class="search-keywords mb-25">
-                            <form class="filter" data-js-form="search">
+                            <form data-js-form="filter">
                                 <div class="form-row align-items-center">
                                 <div class="col-md-8 col-lg-10">
                                     <fieldset class="group">
@@ -57,8 +57,8 @@ while (have_posts()) :
                                 </div><!-- col -->
                                 <div class="col-md-4 col-lg-2">
                                 <fieldset class="group">
-                                    <button class="btn btn-primary ml-50 border-0 rounded-0">Search</button>
-                                    <input type="hidden" name="action" value="submit">
+                                    <button class="btn btn-primary ml-50 border-0 rounded-0">Filter</button>
+                                    <input type="hidden" name="action" value="filter">
                                 </fieldset>
                                 </div><!-- col -->
                                 </div><!-- flow row -->

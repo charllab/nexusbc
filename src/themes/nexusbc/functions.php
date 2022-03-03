@@ -42,9 +42,16 @@ add_action('wp_ajax_filter', 'filter_ajax');
 function filter_ajax()
 {
 
+    print_r($_POST);
+
+    echo 'it fired';
+
+
     // comes from app.js
     $category = $_POST['category'];
     $search_entry = $_POST['search-keyword'];
+
+    echo $search_entry;
 
     $args = array(
         'post_type' => 'service-directories',
@@ -61,10 +68,17 @@ function filter_ajax()
         );
     }
 
-    // search bar
-    if (!empty($search_entry)) {
-        $args['s'] = $search_entry;
+    if (!empty($keyword_search)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'keywords',
+                'field' => 'term_id',
+                'terms' => array($keyword_search),
+                'relation' => 'OR'
+            )
+        );
     }
+
 
     $query = new WP_Query($args);
     $cat = get_term($category, 'services_type');

@@ -1,12 +1,39 @@
 jQuery(function () {
 
+
+    // ajax load for services directory
+
+    $(document).on('submit', '[data-js-form=filter]', function(e) {
+        e.preventDefault();
+
+        // creates a string out of all the form fields
+        let search = $(this).serialize();
+
+        console.log(search);
+
+        $.ajax({
+            // comes from function.php wp_localize_scripts
+            url: wpAjax.ajaxUrl,
+            data: search,
+            //  doesn't matter
+            type: 'post',
+            success: function(result) {
+                $('.js-filter').html(result);
+            }, error: function(result) {
+                console.warn(result);
+            },
+        });
+
+    });
+
+
     // ajax load for services directory
 
     $(document).on('click', '.js-filter-item', function(e) {
         e.preventDefault();
 
         // data-category tag on a tag and set in ajax-function php
-        var category  = $(this).data('category');
+        let category  = $(this).data('category');
 
         $.ajax({
             // comes from function.php wp_localize_scripts
@@ -140,14 +167,3 @@ var trackPixel = function (name, options) {
         });
     }
 };
-
-// print
-// https://codepen.io/ioanmeri/pen/MLvVLN
-document.getElementsByClassName("printAll").addEventListener("click", function() {
-    var printContents = document.getElementById('printDiv').innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-});
-
