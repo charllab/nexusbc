@@ -9,7 +9,7 @@ jQuery(function () {
         // creates a string out of all the form fields
         let search = $(this).serialize();
 
-        console.log(search);
+        //console.log(search);
 
         $.ajax({
             // comes from function.php wp_localize_scripts
@@ -23,7 +23,6 @@ jQuery(function () {
                 console.warn(result);
             },
         });
-
     });
 
 
@@ -48,6 +47,8 @@ jQuery(function () {
             },
         });
     });
+
+    // print
 
     // get header heights
     function setMainMarginTop() {

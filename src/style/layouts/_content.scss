@@ -534,4 +534,12 @@ body.news-and-events {
     padding: $spacer*1.15 $spacer*.55 $spacer*1.25;
 }
 
+#all {
+
+        hr:last-of-type {
+            display: none;
+            border: none;
+        }
+}
+
 

@@ -41,64 +41,61 @@ add_action('wp_ajax_filter', 'filter_ajax');
 // always call die() first!
 function filter_ajax()
 {
-
-    print_r($_POST);
-
-    echo 'it fired';
-
+    //print_r($_POST);
 
     // comes from app.js
     $category = $_POST['category'];
     $search_entry = $_POST['search-keyword'];
-
-    echo $search_entry;
 
     $args = array(
         'post_type' => 'service-directories',
         'posts_per_page' => -1
     );
 
+    // category filter
     if (!empty($category)) {
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'services_type',
                 'field' => 'term_id',
-                'terms' => array($category)
+                'terms' => $category
             )
         );
     }
 
-    if (!empty($keyword_search)) {
+    // search form
+    if (!empty($search_entry)) {
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'keywords',
-                'field' => 'term_id',
-                'terms' => array($keyword_search),
-                'relation' => 'OR'
+                'taxonomy' => 'directory_service_search',
+                'field' => 'slug',
+                'terms' => $search_entry
             )
         );
     }
-
 
     $query = new WP_Query($args);
     $cat = get_term($category, 'services_type');
 
 
-
     if ($query->have_posts()) :
 
-        if(!empty($cat->count)){
-            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name .  ' ' . '(' . $query->found_posts . ') <a href="#" onclick="window.print(); return false;" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
-        }else {
-            echo '<h2 class="h1 mb-2">Showing listings for All' .  ' ' . '(' . $query->found_posts . ') <a href="#" onclick="window.print(); return false;" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        if (!empty($cat->count)) {
+            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        } elseif(!empty($search_entry)) {
+            echo '<h2 class="h1 mb-2">You searched for' . ' "' .  $search_entry . '" '  . '<a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        }  else {
+        echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         }
+
+        echo '<div id="all">';
 
         while ($query->have_posts()) :
             $query->the_post();
-        ?>
+            ?>
 
-            <div class="mb-4">
-                <h2><?php the_title(); ?> <a href="#" class="printAll"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
+            <div class="mb-2" id="<?php echo strtolower(str_replace(' ', '', get_the_title()));?>">
+                <h2><?php the_title(); ?> <a onclick="printDiv('<?php echo strtolower(str_replace(' ', '', get_the_title()));?>')"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
 
                 <?php the_field('services_provided'); ?>
 
@@ -106,10 +103,10 @@ function filter_ajax()
                     <?php the_field('services_provided_locations'); ?>
                 </p>
 
-                <p class="mb-0"><b>Tel</b>: <?php the_field('phone_number'); ?></p>
+                <p class="mb-0"><b>Tel</b>: <a href="tel:<?php the_field('phone_number'); ?>"><?php the_field('phone_number'); ?></a></p>
 
                 <?php if (get_field('email_address')): ?>
-                    <p class="mb-0"><b>Email</b>: <?php the_field('email_address'); ?></p>
+                    <p class="mb-0"><b>Email</b>: <a href="mailto:<?php the_field('email_address'); ?>"><?php the_field('email_address'); ?></a></p>
                 <?php endif; ?>
 
                 <?php if (get_field('website_url')): ?>
@@ -124,17 +121,22 @@ function filter_ajax()
                 <?php endif; ?>
             </div><!-- mb-1 -->
 
-        <?php endwhile;
+            <hr class="mt-1 mb-2 border-top">
 
+        <?php endwhile;
+    elseif (!empty($category)) :
+        $cat = get_term($category);
+        echo '<h1>There are currently no providers in our directory for the category of <b>' . strtolower($cat->name) . '</b> at the moment.</h1>';
+        echo '<p>Do you perhaps provide a local service for the category of <b>' . strtolower($cat->name) . '</b>? Please see the sidebar on how to get listed in this directory.</p>';
+    elseif (!empty($search_entry)) :
+        echo '<h1>There are currently no results for "'. $search_entry . '".</h1>';
+        echo '<p>Please try another search term or use the filter by category option.</p>';
     else:
-        if (!empty($category)) {
-            $cat = get_term($category);
-            echo '<h1>There are currently no providers in our directory for the category of <b>' . strtolower($cat->name) . '</b> at the moment.</h1>';
-            echo '<p>Do you perhaps provide a local service for the category of <b>' . strtolower($cat->name) . '</b>? Please see the sidebar on how to get listed in this directory.</p>';
-        } else {
-            echo '<h2>There are currently no providers in our directory for that specific category at the moment.</h2>';
-        }
+        echo '<h2>There are currently no providers in our directory for that specific category at the moment.</h2>';
     endif;
+
+    echo '</div><!-- #all -->';
+
     wp_reset_postdata();
 
     die();

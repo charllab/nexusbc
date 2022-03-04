@@ -15,7 +15,6 @@ while (have_posts()) :
 
                         <h2 class="mb-1">Filter by category or search keywords</h2>
 
-
                         <div data-js-form="filter">
                             <?php
                             $categories = get_terms(array(
@@ -65,7 +64,28 @@ while (have_posts()) :
                             </form>
                         </div><!-- search-keywords -->
 
-                        <div class="js-filter">
+                        <script>
+                            // function printDiv(divName){
+                            //     var printContents = document.getElementById(divName).innerHTML;
+                            //     var originalContents = document.body.innerHTML;
+                            //     document.body.innerHTML = printContents;
+                            //     window.print();
+                            //     document.body.innerHTML = originalContents;
+                            // }
+
+                            function printDiv(divName)
+                            {
+                                var divToPrint=document.getElementById(divName);
+                                var newWin=window.open('','Print-Window');
+                                newWin.document.open();
+                                newWin.document.write('<html><body style="padding:45px; font-family:sans-serif" onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+                                newWin.document.close();
+                                //setTimeout(function(){newWin.close();},10);
+                                newWin.close();
+                            }
+                        </script>
+
+                        <div class="js-filter mb-4">
                             <?php
                             $args = array(
                                 'post_type' => 'service-directories',
@@ -75,41 +95,17 @@ while (have_posts()) :
 
                             $query = new WP_Query($args);
 
-                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a href="#" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+
+                            echo '<div id="all">';
 
                             if ($query->have_posts()) :
 
                                 while ($query->have_posts()) :
                                     $query->the_post();
-
-                                    $movie_id = get_the_ID();
-                                    $url = get_the_permalink();
-                                    $title = get_the_title();
-                                    $taxonomy = 'services_type';
-
-                                    $post_terms = wp_get_object_terms( $movie_id, $taxonomy, array( 'fields' => 'ids' ) );
-
-                                    // Separator between links.
-                                    $separator = ', ';
-
-                                    if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
-
-                                        $term_ids = implode( ',' , $post_terms );
-
-                                        $terms = wp_list_categories( array(
-                                            'title_li' => '',
-                                            'style'    => 'none',
-                                            'echo'     => false,
-                                            'taxonomy' => $taxonomy,
-                                            'include'  => $term_ids
-                                        ) );
-
-                                        $terms = rtrim( trim( str_replace( '<br />',  $separator, $terms ) ), $separator );
-                                    }
                             ?>
-
-                                <div class="mb-4">
-                                    <h2><?php the_title(); ?> <a href="#"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
+                                <div class="mb-2 print-section" id="<?php echo strtolower(str_replace(' ', '', get_the_title()));?>">
+                                    <h2><?php the_title(); ?> <a href="#" onclick="printDiv('<?php echo strtolower(str_replace(' ', '', get_the_title()));?>'); return false;"><i class="ml-250 fa fa-print fa-sm"></i></a></h2>
 
                                     <?php the_field('services_provided'); ?>
 
@@ -117,10 +113,10 @@ while (have_posts()) :
                                         <?php the_field('services_provided_locations'); ?>
                                     </p>
 
-                                    <p class="mb-0"><b>Tel</b>: <?php the_field('phone_number'); ?></p>
+                                    <p class="mb-0"><b>Tel</b>: <a href="tel:<?php the_field('phone_number'); ?>"><?php the_field('phone_number'); ?></a></p>
 
                                     <?php if(get_field('email_address')): ?>
-                                    <p class="mb-0"><b>Email</b>: <?php the_field('email_address'); ?></p>
+                                    <p class="mb-0"><b>Email</b>: <a href="mailto:<?php the_field('email_address'); ?>"><?php the_field('email_address'); ?></a></p>
                                     <?php endif; ?>
 
                                     <?php if(get_field('website_url')): ?>
@@ -135,12 +131,18 @@ while (have_posts()) :
                                     <?php endif; ?>
                                 </div><!-- mb-1 -->
 
+                                <hr class="mt-1 mb-2 border-top">
+
                                 <?php endwhile;
                             endif;
+
+
+                            echo '</div><!-- #all -->';
+
                             wp_reset_postdata();
                         endwhile;
                         ?>
-                        </div><!-- target -->
+                        </div><!-- js-filter -->
                     </div><!-- pr-xl-2 -->
                 </div><!-- col -->
                 <div class="col-lg-5 col-xl-4">
