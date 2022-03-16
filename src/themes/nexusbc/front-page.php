@@ -23,9 +23,9 @@
                                         <p class="lead text-white mb-2 pr-lg-1"><?php the_sub_field('hero_slide_blurb'); ?></p>
                                         <?php if (get_sub_field('hero_slide_button_text')): ?>
                                             <!-- Create variable Link, that includes array with link info -->
-                                            <?php $link = get_sub_field('hero_slide_button_link');?>
-                                            <a href="<?php echo $link['url'];?>"
-                                               target="<?php echo $link['target'] ? $link['target'] : '_self';?>"
+                                            <?php $link = get_sub_field('hero_slide_button_link'); ?>
+                                            <a href="<?php echo $link['url']; ?>"
+                                               target="<?php echo $link['target'] ? $link['target'] : '_self'; ?>"
                                                class="btn btn-primary" class="text-white mb-1">
                                                 <?php the_sub_field('hero_slide_button_text'); ?>
                                             </a>
@@ -43,51 +43,63 @@
         <?php endif; ?>
 
         <section class="py-2">
+
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <h2 class="h1 text-uppercase mb-2">News & Events</h2>
+                    <div class="col text-center text-md-left">
+                        <h2 class="h1 text-uppercase mb-1">News & Events</h2>
                     </div>
-                    <div class="col-lg-4 text-lg-center">
-                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="btn btn-primary mb-2">See All News & Events</a>
-                    </div><!-- col -->
-                </div><!-- row -->
-                <div class="row">
-
-                    <?php
-                    global $post;
-                    $args = array(
-                        'posts_per_page' => 3
-                    );
-
-                    $wp_query = new WP_Query();
-                    $wp_query->query($args);
-
-                    // The 2nd Loop
-                    while ($wp_query->have_posts()) {
-                        $wp_query->the_post(); ?>
-
-                        <div class="col-md-4">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
-                                <div
-                                    class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
-                                    <?php
-                                    $thetitle = $post->post_title; /* or you can use get_the_title() */
-                                    $getlength = strlen($thetitle);
-                                    $thelength = 32;
-                                    echo substr($thetitle, 0, $thelength);
-                                    if ($getlength > $thelength) echo "&hellip;";
-                                    ?>
-                                </div>
-                            </a>
-                        </div><!-- col -->
-
-                    <?php }
-                    wp_reset_query(); ?>
-
                 </div><!-- row -->
             </div><!-- container -->
+
+        <?php
+        global $post;
+        $args = array(
+            'posts_per_page' => 6
+        );
+
+        $wp_query = new WP_Query();
+        $wp_query->query($args);
+
+        if (have_posts()) :
+            echo '<div class="container mb-150">';
+            echo '<div class="row">';
+
+            while ($wp_query->have_posts()) : $wp_query->the_post();?>
+            <div class="col-xl-6">
+                <div class="container px-0">
+                    <div class="row justify-content-center align-items-center py-50">
+                        <div class="col">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
+                            </a>
+                        </div><!-- col -->
+                        <div class="col-md-8">
+                            <div class="py-50 px-75">
+                                <h2 class="lead"><?php the_title(); ?></h2>
+                                <div class="mb-150"><?php the_excerpt();?></div>
+                                <a href="<?php the_permalink(); ?>" class="btn btn-primary mb-1 mb-md-0">Read more</a>
+                            </div><!-- py -->
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- container -->
+            </div><!-- col -->
+
+            <?php endwhile;
+            echo '</div><!-- row -->';
+            echo '</div><!-- container -->';
+            endif;
+            wp_reset_query(); ?>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-5 col-lg-4 col-xl-3 text-center">
+                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="d-flex justify-content-center align-items-center fake-btn fake-btn--orange text-white lead-me font-weight-bold mb-50 p-md-2 px-1 mb-1">
+                            See All News & Events</a>
+                    </div><!-- col -->
+                </div><!-- row -->
+            </div><!-- container -->
+
         </section>
 
         <section class="bg-dark py-3">
@@ -102,7 +114,8 @@
                         </p>
                     </div><!-- col -->
                     <div class="col text-lg-center">
-                        <a href="<?php the_field('homepage_donate_cta_button_link'); ?>" class="btn btn-lg btn-primary"><?php the_field('homepage_donate_cta_button_title'); ?></a>
+                        <a href="<?php the_field('homepage_donate_cta_button_link'); ?>"
+                           class="btn btn-lg btn-primary"><?php the_field('homepage_donate_cta_button_title'); ?></a>
                     </div><!-- col -->
                 </div><!-- row -->
             </div><!-- container -->
@@ -129,7 +142,7 @@
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-7">
-                                <span><?php the_field('senior_housing_guide_title');?></span>
+                                <span><?php the_field('senior_housing_guide_title'); ?></span>
                             </a>
                         </div><!-- pr -->
                     </div><!-- col -->
@@ -143,7 +156,7 @@
                            py-2 py-lg-5
                            p-md-2
                            px-1 px-xl-5 px-xxxl-6 ">
-                                <span><?php the_field('home_support_directory_title');?></span>
+                                <span><?php the_field('home_support_directory_title'); ?></span>
                             </a>
                         </div><!-- pl -->
                     </div><!-- col -->
@@ -155,13 +168,14 @@
         <?php get_template_part('partials/main/supporters'); ?>
 
 
-        <?php if(get_field('show')) : ?>
+        <?php if (get_field('show')) : ?>
             <section class="pt-4 pb-3">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo');?>
-                            <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>" class="img-fluid d-block">
+                            <?php $mainsponsor = get_field('homepage_main_sponsor_section_logo'); ?>
+                            <img src="<?php echo $mainsponsor['url']; ?>" alt="<?php echo $mainsponsor['alt']; ?>"
+                                 class="img-fluid d-block">
                         </div><!-- col -->
                         <div class="col-lg-5">
                             <h2 class="h1"><?php the_field('homepage_main_sponsor_section_heading'); ?></h2>

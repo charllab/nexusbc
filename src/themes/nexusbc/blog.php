@@ -18,48 +18,45 @@ get_header(); ?>
                         <h2 class="h1 text-uppercase mb-2">News & Events</h2>
                     </div>
                 </div><!-- row -->
-                <div class="row">
-
-                    <?php
-                    global $post;
-
-                    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-                    $args = array(
-                        'posts_per_page' => 9,
-                        'paged' => $paged
-
-                    );
-
-                    $wp_query = new WP_Query();
-                    $wp_query->query($args);
-
-                    // The 2nd Loop
-                    while ($wp_query->have_posts()) {
-                        $wp_query->the_post(); ?>
-
-                        <div class="col-md-4">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid rounded-top')); ?>
-
-                                <div
-                                    class="bg-primary w-100 d-block text-center py-1 px-2 rounded-bottom text-white mb-2">
-                                    <?php
-                                    $thetitle = $post->post_title; /* or you can use get_the_title() */
-                                    $getlength = strlen($thetitle);
-                                    $thelength = 32;
-                                    echo substr($thetitle, 0, $thelength);
-                                    if ($getlength > $thelength) echo "&hellip;";
-                                    ?>
-                                </div>
-
-                            </a>
-                        </div><!-- col -->
-
-                    <?php } ?>
-
-                </div><!-- row -->
             </div><!-- container -->
+
+            <?php
+            global $post;
+            $args = array(
+                'posts_per_page' => 6
+            );
+
+            $wp_query = new WP_Query();
+            $wp_query->query($args);
+
+            if (have_posts()) :
+                echo '<div class="container mb-150">';
+                echo '<div class="row">';
+
+                while ($wp_query->have_posts()) : $wp_query->the_post();?>
+                    <div class="col-xl-6">
+                        <div class="container px-0">
+                            <div class="row justify-content-center align-items-center py-50">
+                                <div class="col">
+                                    <a href="<?php the_permalink(); ?>">
+                                        <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
+                                    </a>
+                                </div><!-- col -->
+                                <div class="col-md-8">
+                                    <div class="py-50 px-75">
+                                        <h2 class="lead"><?php the_title(); ?></h2>
+                                        <div class="mb-150"><?php the_excerpt();?></div>
+                                        <a href="<?php the_permalink(); ?>" class="btn btn-primary mb-1 mb-md-0">Read more</a>
+                                    </div><!-- py -->
+                                </div><!-- col -->
+                            </div><!-- row -->
+                        </div><!-- container -->
+                    </div><!-- col -->
+
+                <?php endwhile;
+                echo '</div><!-- row -->';
+                echo '</div><!-- container -->';
+            endif; ?>
 
             <div class="container">
                 <div class="row justify-content-center">

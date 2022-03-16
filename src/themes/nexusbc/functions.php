@@ -220,6 +220,15 @@ function enable_page_excerpt()
 
 add_action('init', 'enable_page_excerpt');
 
+/*
+Control Excerpt Length Using Filters
+https://smallenvelop.com/limit-post-excerpt-length-in-wordpress/
+*/
+function custom_excerpt_length( $length ) {
+    return 16;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
 
 /* blog pagination */
 /*
