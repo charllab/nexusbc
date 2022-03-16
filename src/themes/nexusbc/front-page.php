@@ -52,50 +52,57 @@
                 </div><!-- row -->
             </div><!-- container -->
 
-        <?php
-        global $post;
-        $args = array(
-            'posts_per_page' => 6
-        );
+            <?php
+            global $post;
+            $args = array(
+                'posts_per_page' => 6
+            );
 
-        $wp_query = new WP_Query();
-        $wp_query->query($args);
+            $wp_query = new WP_Query();
+            $wp_query->query($args);
 
-        if (have_posts()) :
-            echo '<div class="container mb-150">';
-            echo '<div class="row">';
+            if (have_posts()) :
+                echo '<div class="container mb-150">';
+                echo '<div class="row">';
 
-            while ($wp_query->have_posts()) : $wp_query->the_post();?>
-            <div class="col-xl-6">
-                <div class="container px-0">
-                    <div class="row justify-content-center align-items-center py-50">
-                        <div class="col">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
-                            </a>
-                        </div><!-- col -->
-                        <div class="col-md-8">
-                            <div class="py-50 px-75">
-                                <h2 class="lead mb-250"><?php the_title(); ?></h2>
-                                <p class="smaller mb-250 font-weight-bold">Posted: <?php echo get_the_date(); ?> </p>
-                                <div class="mb-150"><?php the_excerpt();?></div>
-                                <a href="<?php the_permalink(); ?>" class="btn btn-primary mb-1 mb-md-0">Read more</a>
-                            </div><!-- py -->
-                        </div><!-- col -->
-                    </div><!-- row -->
-                </div><!-- container -->
-            </div><!-- col -->
+                while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+                    <div class="col-xl-6">
+                        <div class="container px-0">
+                            <div class="py-250 pr-250">
+                                <div class="border border-shadow">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
+                                            </a>
+                                        </div><!-- col -->
+                                        <div class="col-md-7 col-xxl-8">
+                                            <div class="py-50 px-75">
+                                                <h2 class="blog-leader mb-250"><?php the_title(); ?></h2>
+                                                <p class="smaller mb-250 font-weight-bold">
+                                                    Posted: <?php echo get_the_date(); ?> </p>
+                                                <div class="mb-150"><?php the_excerpt(); ?></div>
+                                                <a href="<?php the_permalink(); ?>"
+                                                   class="btn btn-primary mb-1 mb-md-0">Read more</a>
+                                            </div><!-- py -->
+                                        </div><!-- col -->
+                                    </div><!-- row -->
+                                </div><!-- border -->
+                            </div><!-- py-250 pr-250 -->
+                        </div><!-- container -->
+                    </div><!-- col -->
 
-            <?php endwhile;
-            echo '</div><!-- row -->';
-            echo '</div><!-- container -->';
+                <?php endwhile;
+                echo '</div><!-- row -->';
+                echo '</div><!-- container -->';
             endif;
             wp_reset_query(); ?>
 
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-5 col-lg-4 col-xl-3 text-center">
-                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>" class="d-flex justify-content-center align-items-center fake-btn fake-btn--orange text-white lead-me font-weight-bold mb-50 p-md-2 px-1 mb-1">
+                        <a href="<?php echo esc_url(home_url('/news-and-events')); ?>"
+                           class="d-flex justify-content-center align-items-center fake-btn fake-btn--orange text-white lead-me font-weight-bold mb-50 p-md-2 px-1 mb-1">
                             See All News & Events</a>
                     </div><!-- col -->
                 </div><!-- row -->
