@@ -23,7 +23,7 @@ get_header(); ?>
             <?php
             global $post;
             $args = array(
-                'posts_per_page' => 6
+                'posts_per_page' => -1
             );
 
             $wp_query = new WP_Query();
@@ -44,7 +44,8 @@ get_header(); ?>
                                 </div><!-- col -->
                                 <div class="col-md-8">
                                     <div class="py-50 px-75">
-                                        <h2 class="lead"><?php the_title(); ?></h2>
+                                        <h2 class="lead mb-250"><?php the_title(); ?></h2>
+                                        <p class="smaller mb-250 font-weight-bold">Posted: <?php echo get_the_date(); ?> </p>
                                         <div class="mb-150"><?php the_excerpt();?></div>
                                         <a href="<?php the_permalink(); ?>" class="btn btn-primary mb-1 mb-md-0">Read more</a>
                                     </div><!-- py -->
@@ -58,18 +59,6 @@ get_header(); ?>
                 echo '</div><!-- container -->';
             endif; ?>
 
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 col-xl-8 text-center">
-                        <nav aria-label="Page navigation">
-
-                            <?php bootstrap_pagination(); ?>
-
-                        </nav>
-                    </div><!-- col-->
-                </div><!-- row -->
-
-            </div><!-- container -->
         </section>
     </main>
 
