@@ -34,17 +34,17 @@ get_header(); ?>
                 echo '<div class="row">';
 
                 while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-                    <div class="col-xl-6">
-                        <div class="container px-0">
-                            <div class="py-250 pr-250">
-                                <div class="border-shadow p-1">
+                    <div class="col-xl-6 d-flex">
+                        <div class="container d-flex">
+                            <div class="py-250 pr-250 d-flex flex-1">
+                                <div class="border-shadow p-1 d-flex">
                                     <div class="row justify-content-center align-items-center">
                                         <div class="col">
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
                                             </a>
                                         </div><!-- col -->
-                                        <div class="col-md-7">
+                                        <div class="col-md-7 col-xl-8">
                                             <div class="py-50 pt-xl-1 pb-xl-2 px-150">
                                                 <h2 class="blog-leader mb-250"><?php the_title(); ?></h2>
                                                 <p class="smaller mb-250 font-weight-bold">
