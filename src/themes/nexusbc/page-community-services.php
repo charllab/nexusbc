@@ -51,12 +51,12 @@ while (have_posts()) :
                                 <div class="form-row align-items-center">
                                 <div class="col-md-8 col-lg-10">
                                     <fieldset class="group">
-                                        <input class="form-control rounded-0 w-100" type="text" id="search-keyword" name="search-keyword" placeholder="Type here…">
+                                        <input class="form-control rounded-0 w-100 mb-150 mb-md-0" type="text" id="search-keyword" name="search-keyword" placeholder="Type here…">
                                     </fieldset>
                                 </div><!-- col -->
                                 <div class="col-md-4 col-lg-2">
                                 <fieldset class="group">
-                                    <button class="btn btn-primary ml-50 border-0 rounded-0">Filter</button>
+                                    <button class="btn btn-primary ml-md-50 border-0 rounded-0">Filter</button>
                                     <input type="hidden" name="action" value="filter">
                                 </fieldset>
                                 </div><!-- col -->
@@ -95,7 +95,7 @@ while (have_posts()) :
 
                             $query = new WP_Query($args);
 
-                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-sm-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
 
                             echo '<div id="all">';
 
