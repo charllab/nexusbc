@@ -69,7 +69,7 @@
                     <div class="col-xl-6">
                         <div class="container px-0">
                             <div class="py-250 pr-250">
-                                <div class="border-shadow">
+                                <div class="border-shadow p-1">
                                     <div class="row justify-content-center align-items-center">
                                         <div class="col">
                                             <a href="<?php the_permalink(); ?>">
