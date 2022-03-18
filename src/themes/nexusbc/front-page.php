@@ -67,7 +67,7 @@
 
                 while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
                     <div class="col-xl-6 d-flex">
-                        <div class="container d-flex">
+                        <div class="container d-flex p-0">
                             <div class="py-250 pr-250 d-flex flex-1">
                                 <div class="border-shadow p-1 d-flex">
                                     <div class="row justify-content-center align-items-center">
@@ -77,7 +77,7 @@
                                             </a>
                                         </div><!-- col -->
                                         <div class="col-md-7 col-xl-8">
-                                            <div class="py-50 pt-xl-1 pb-xl-2 px-150">
+                                            <div class="py-50 px-md-150">
                                                 <h2 class="blog-leader mb-250"><?php the_title(); ?></h2>
                                                 <p class="smaller mb-250 font-weight-bold">
                                                     Posted: <?php echo get_the_date(); ?> </p>
