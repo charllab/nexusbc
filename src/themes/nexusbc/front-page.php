@@ -69,15 +69,15 @@
                     <div class="col-xl-6">
                         <div class="container px-0">
                             <div class="py-250 pr-250">
-                                <div class="border border-shadow">
+                                <div class="border-shadow">
                                     <div class="row justify-content-center align-items-center">
                                         <div class="col">
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php the_post_thumbnail('full', array('class' => 'd-block img-fluid mb-1 mb-md-0')); ?>
                                             </a>
                                         </div><!-- col -->
-                                        <div class="col-md-7 col-xxl-8">
-                                            <div class="py-50 px-75">
+                                        <div class="col-md-7">
+                                            <div class="py-50 pt-xl-1 pb-xl-2 px-150">
                                                 <h2 class="blog-leader mb-250"><?php the_title(); ?></h2>
                                                 <p class="smaller mb-250 font-weight-bold">
                                                     Posted: <?php echo get_the_date(); ?> </p>
