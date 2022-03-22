@@ -78,7 +78,7 @@ while (have_posts()) :
                                 var divToPrint=document.getElementById(divName);
                                 var newWin=window.open('','Print-Window');
                                 newWin.document.open();
-                                newWin.document.write('<html><body style="padding:45px; font-family:sans-serif" onload="window.print()">'+divToPrint.innerHTML+'<p style="margin-top: 30px;">Provided by <strong>NexusBC Community Resource Centre</strong> | <a href="tel:+12505450585">250.545.0585</a> | <a href="https://nexusbc.ca">www.nexusbc.ca</a></p></body></html>');
+                                newWin.document.write('<html><body style="padding:45px; font-family:sans-serif" onload="window.print()"><p style="margin-bottom: 30px;">Provided by <strong>NexusBC Community Resource Centre</strong> | <a href="tel:+12505450585">250.545.0585</a> | <a href="https://nexusbc.ca">www.nexusbc.ca</a></p>'+divToPrint.innerHTML+'</body></html>');
                                 newWin.document.close();
                                 //setTimeout(function(){newWin.close();},10);
                                 newWin.close();
