@@ -48,7 +48,8 @@ jQuery(function () {
         });
     });
 
-    // print
+    // scroll too
+
 
     // get header heights
     function setMainMarginTop() {
@@ -133,10 +134,58 @@ jQuery(function () {
         jQuery('.wp-block-embed-youtube').removeClass().addClass('embed-responsive-item');
     }
 
+    // services anchors
+    // https://dzone.com/articles/checking-media-queries-jquery
+    if ($(window).width() < 668) {
+        // change functionality for smaller screens
+        jQuery('.scrollable-anchor-offset').on('click', function (e) {
+            console.log('min-width: 668');
+            e.preventDefault();
+            jQuery('html,body').animate({
+                scrollTop: jQuery(this.hash).offset().top - 170
+            }, 1000);
+        });
+        jQuery('#myForm').on('submit', function() {
+            console.log('form submit 668');
+            jQuery('html, body').animate({
+                scrollTop: $('#servicesListings').offset().top - 175
+            }, 1000);
+        });
+    } else if ($(window).width() < 768) {
+        // change functionality for smaller screens
+        jQuery('.scrollable-anchor-offset').on('click', function (e) {
+            console.log('min-width: 768');
+            e.preventDefault();
+            jQuery('html,body').animate({
+                scrollTop: jQuery(this.hash).offset().top - 128
+            }, 1000);
+        });
+        jQuery('#myForm').on('submit', function() {
+            console.log('form submit 768');
+            jQuery('html, body').animate({
+                scrollTop: $('#servicesListings').offset().top - 128
+            }, 1000);
+        });
+    } else {
+        // change functionality for larger screens
+        jQuery('.scrollable-anchor-offset').on('click', function (e) {
+            console.log('max-width: other');
+            e.preventDefault();
+            jQuery('html,body').animate({
+                scrollTop: jQuery(this.hash).offset().top - 155
+            }, 1000);
+        });
+        jQuery('#myForm').on('submit', function() {
+            console.log('form submit other');
+            jQuery('html, body').animate({
+                scrollTop: $('#servicesListings').offset().top - 136
+            }, 1000);
+        });
+    }
+
     // Scrolling anchors
     jQuery('.scrollable-anchor').on('click', function (e) {
         e.preventDefault();
-
         jQuery('html,body').animate({
             scrollTop: jQuery(this.hash).offset().top
         }, 1000);

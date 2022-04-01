@@ -81,11 +81,11 @@ function filter_ajax()
     if ($query->have_posts()) :
 
         if (!empty($cat->count)) {
-            echo '<h2 class="h1 mb-2">Showing listings for ' . $cat->name . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')" class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+            echo '<h2 class="h1 mb-2"><span class="mr-50">Showing listings for ' . $cat->name . ' ' . '(' . $query->found_posts . ')</span><a onclick="printDiv(\'all\')" class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         } elseif(!empty($search_entry)) {
-            echo '<h2 class="h1 mb-2">You searched for' . ' "' .  $search_entry . '" '  . '<a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+            echo '<h2 class="h1 mb-2"><span class="mr-50">You searched for' . ' "' .  $search_entry . '" '  . '</span><a onclick="printDiv(\'all\')"  class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         }  else {
-        echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+        echo '<h2 class="h1 mb-2"><span class="mr-50">Showing listings for All' . ' ' . '(' . $query->found_posts . ')</span><a onclick="printDiv(\'all\')"  class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
         }
 
         echo '<div id="all">';

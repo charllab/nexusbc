@@ -42,6 +42,10 @@ body {
 
 .h1, h1 {
     font-size: 2rem;
+    @include media-breakpoint-down(sm) {
+        font-size: 1.75rem;
+        line-height: 1.5;
+    }
 }
 
 .h2, h2 {

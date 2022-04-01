@@ -27,16 +27,16 @@ while (have_posts()) :
                             ?>
                             <ul class="list-unstyled d-flex flex-wrap">
                                 <li class="d-flex">
-                                    <a href="#"
+                                    <a href="#servicesListings"
                                        data-category=""
-                                       class="js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
+                                       class="scrollable-anchor-offset js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
                                         All (<?php echo $count_posts = wp_count_posts( 'service-directories' )->publish; ?>)
                                     </a>
                                 </li>
                                 <?php foreach ($categories as $category) : ?>
                                     <li class="d-flex">
-                                        <a href="#" data-category="<?php echo $category->term_id; ?>"
-                                           class="js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
+                                        <a href="#servicesListings" data-category="<?php echo $category->term_id; ?>"
+                                           class="scrollable-anchor-offset js-filter-item px-75 py-250 bg-soft mr-250 mb-50 text-body font-weight-light filter-category">
                                             <?php echo trim($category->name) . '&nbsp;' . '(' . $category->count . ')'; ?>
                                         </a>
                                     </li>
@@ -47,7 +47,7 @@ while (have_posts()) :
                         </div><!-- filter -->
 
                         <div class="search-keywords mb-25">
-                            <form data-js-form="filter">
+                            <form data-js-form="filter" id="myForm">
                                 <div class="form-row align-items-center">
                                 <div class="col-md-8 col-lg-10">
                                     <fieldset class="group">
@@ -85,7 +85,7 @@ while (have_posts()) :
                             }
                         </script>
 
-                        <div class="js-filter mb-4">
+                        <div class="js-filter mb-4" id="servicesListings">
                             <?php
                             $args = array(
                                 'post_type' => 'service-directories',
@@ -95,7 +95,7 @@ while (have_posts()) :
 
                             $query = new WP_Query($args);
 
-                            echo '<h2 class="h1 mb-2">Showing listings for All' . ' ' . '(' . $query->found_posts . ') <a onclick="printDiv(\'all\')"  class="btn-print ml-sm-75">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
+                            echo '<h2 class="h1 mb-2"><span class="mr-50">Showing listings for All' . ' ' . '(' . $query->found_posts . ')</span><a onclick="printDiv(\'all\')"  class="btn-print">Print All <i class="ml-250 fa fa-print fa-lg"></i></a></h2>';
 
                             echo '<div id="all">';
 
