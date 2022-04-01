@@ -11,7 +11,7 @@ get_header();
             <div class="col-lg-7 col-xl-8">
                 <div class="pr-xl-2">
 
-                <h1>This page is only for quick content entry testing</h1>
+                <h1>This page is only for quick content testing</h1>
                 <p>Please test your final output on the <a href="<?php echo esc_url(home_url('/community-services')); ?>" target="_blank">Community Service Directories</a> page.</p>
                 <br>
 
