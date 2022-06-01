@@ -157,7 +157,6 @@
                     <div class="col-sm-6 text-center text-xl-right">
                         <div class="pl-lg-2 pr-xxxl-0">
                             <a href="<?php the_field('home_support_directory'); ?>"
-                               target="_blank"
                                class="d-flex justify-content-center align-items-center
                            fake-btn fake-btn--orange text-white lead-me font-weight-bold
                            ml-xxxl-2 mb-50
