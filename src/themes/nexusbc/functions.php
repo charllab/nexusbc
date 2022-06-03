@@ -116,6 +116,11 @@ function filter_ajax()
                     </p>
                 <?php endif; ?>
 
+                <!--if criminal_record_check_vulnerable_sector_clearance_on_file equals to 'yes' and criminal_record_check_expiry_date has a value-->
+                <?php if (get_field('criminal_record_check_vulnerable_sector_clearance_on_file') == 'yes' && get_field('criminal_record_check_expiry_date')) : ?>
+                    <p class="mb-0"><b>Clearance Expiry</b>: <?php the_field('criminal_record_check_expiry_date'); ?></p>
+                <?php endif; ?>
+
                 <?php if (get_field('rates')): ?>
                     <p><b>Hourly rate</b>: <?php the_field('rates'); ?></p>
                 <?php endif; ?>
