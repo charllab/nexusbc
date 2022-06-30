@@ -49,7 +49,8 @@ function filter_ajax()
 
     $args = array(
         'post_type' => 'service-directories',
-        'posts_per_page' => -1
+        'posts_per_page' => -1,
+        'post_status' => 'publish'
     );
 
     // category filter
