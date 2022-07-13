@@ -115,8 +115,15 @@ $query->the_post();
             <?php the_field('services_provided_locations'); ?>
         </p>
 
-        <p class="mb-0"><b>Tel</b>: <a
-                href="tel:<?php the_field('phone_number'); ?>"><?php the_field('phone_number'); ?></a></p>
+        <?php if (get_field('contact_person')): ?>
+            <p class="mb-0"><b>Contact Person</b>:
+                <?php the_field('contact_person'); ?>
+            </p>
+        <?php endif; ?>
+
+        <p class="mb-0"><b>Tel</b>:
+            <a href="tel:<?php the_field('phone_number'); ?>"><?php the_field('phone_number'); ?></a>
+        </p>
 
         <?php if (get_field('email_address')): ?>
             <p class="mb-0"><b>Email</b>: <a
