@@ -150,3 +150,28 @@
     }
 
 }
+
+.m-shadow {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+.m-border-bottom--dark {
+    border-bottom: 1px solid $dark;
+}
+
+#subnav {
+
+ a.nav-link {
+     color: white;
+     text-transform: none;
+     font-size: 1rem;
+     font-weight: normal;
+     text-transform: uppercase;
+     @include media-breakpoint-up(xxl) {
+         padding: 7px 0 9px;
+         line-height: 2;
+         font-size: .95rem;
+         text-transform: none;
+         margin-left: $spacer;
+     }
+ }
+}

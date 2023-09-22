@@ -176,7 +176,8 @@ if (!function_exists('custom_after_setup_theme')) {
         register_nav_menus([
             'primary' => 'Primary Menu',
             'secondary' => 'Footer Menu',
-            'tertiary' => 'Legal Menu'
+            'tertiary' => 'Legal Menu',
+            'quaternary' => 'Sub Menu'
         ]);
 
         // Style Gutenberg

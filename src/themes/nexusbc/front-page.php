@@ -110,7 +110,7 @@
 
         </section>
 
-        <section class="bg-dark py-3">
+        <section class="bg-dark py-3 d-none">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-8">
@@ -129,7 +129,7 @@
             </div><!-- container -->
         </section>
 
-        <section class="py-3">
+        <section class="py-3 d-none">
             <div class="container">
                 <div class="row">
                     <div class="col-12">

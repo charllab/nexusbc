@@ -24,9 +24,9 @@
                         </div>
                     </div>
                 </form>
-                <div class="align-self-center d-none d-xs-flex">
-                    <a href="<?php echo esc_url(home_url('/donate-online')); ?>" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
-                </div>
+                <!--<div class="align-self-center d-none d-xs-flex">-->
+                <!--    <a href="--><?php //echo esc_url(home_url('/donate-online')); ?><!--" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>-->
+                <!--</div>-->
             </div><!-- d-none d-xxxl-block -->
 
             <button class="navbar-toggler ml-150 order-1 order-sm-2" type="button" data-toggle="collapse" data-target=".mainnav-m"
@@ -58,14 +58,13 @@
                             </div>
                         </div>
                     </form>
-                    <div class="align-self-center">
-                        <a href="<?php echo esc_url(home_url('/donate-online')); ?>" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>
-                    </div>
+                    <!--<div class="align-self-center">-->
+                    <!--    <a href="--><?php //echo esc_url(home_url('/donate-online')); ?><!--" class="btn btn-primary ml-175 border-0 rounded-0">Donate</a>-->
+                    <!--</div>-->
                 </div><!-- d-none d-xxxl-block -->
             </div><!-- desktop-nav -->
 
         </div><!-- container-->
-
 
     <div class="d-sm-none w-100 mt-1">
         <form id="searchForm" class="w-100" method="get" action="<?php echo esc_url(site_url('/')); ?>">
@@ -94,8 +93,35 @@
             'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
             'walker'          => new WP_Bootstrap_Navwalker(),
         ]); ?>
+        <section class="bg-dark">
+                <?php wp_nav_menu([
+                    'theme_location' => 'quaternary',
+                    'container_class' => 'container py-1',
+                    'container_id' => 'subnav',
+                    'menu_class' => 'navbar-nav ml-auto',
+                    'fallback_cb' => '',
+                    'menu_id' => 'sub-menu',
+                    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+                    'walker'          => new WP_Bootstrap_Navwalker(),
+                ]); ?>
+        </section>
 
 
     </div><!-- mainnav-m -->
+
+    <section class="m-shadow m-border-bottom--dark bg-dark d-none d-xxxl-block">
+        <div class="container">
+            <?php wp_nav_menu([
+                'theme_location' => 'quaternary',
+                'container_class' => '',
+                'container_id' => 'subnav',
+                'menu_class' => 'navbar-nav d-xxl-flex flex-xxl-row ml-auto justify-content-xxl-end',
+                'fallback_cb' => '',
+                'menu_id' => 'sub-menu',
+                'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'          => new WP_Bootstrap_Navwalker(),
+            ]); ?>
+        </div><!-- container -->
+    </section>
 
 </header>
