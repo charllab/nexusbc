@@ -1,13 +1,38 @@
 <header id="header" class="hero-nav-overlay fixed-top bg-soft">
 
+    <?php $websitelogo = get_field('website_logo', 'options');
+    $logo_image = $websitelogo['logo_image'];
+    $logo_small_height = $websitelogo['logo_height_on_small_screens'];
+    $logo_wide_height = $websitelogo['logo_height_on_wide_screens'];
+    ?>
+
+    <style>
+        .logo {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            width:auto;
+        }
+        @media only screen and (max-width: 1699px) {
+            .logo {
+
+                height: <?php echo $logo_small_height . 'px';?>;
+            }
+        }
+        @media only screen and (min-width: 1700px) {
+            .logo {
+                height: <?php echo $logo_wide_height . 'px';?>;
+            }
+        }
+    </style>
+
     <nav class="navbar navbar-expand-xxxl navbar-light py-1 py-lg-0 z-index-500 w-100">
 
         <div class="container">
-            <div class="nav-logo">
+            <div class="">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
-                    <img src="<?php bloginfo('template_url'); ?>/images/logo.svg"
+                    <img src="<?php echo $logo_image['url'];?>"
                          alt="<?php bloginfo('name'); ?> - Logo"
-                         class="img-fluid">
+                         class="logo">
                     <span class="sr-only"><?php bloginfo('name'); ?></span>
                 </a>
             </div><!-- nav-logo -->
