@@ -123,7 +123,7 @@
                     'theme_location' => 'quaternary',
                     'container_class' => 'container py-1',
                     'container_id' => 'subnav',
-                    'menu_class' => 'navbar-nav ml-auto',
+                    'menu_class' => 'navbar-nav ml-auto px-2',
                     'fallback_cb' => '',
                     'menu_id' => 'sub-menu',
                     'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
